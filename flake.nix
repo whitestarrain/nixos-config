@@ -14,10 +14,11 @@
     };
   };
 
+  # nixpkgs, home-manager, nixpkgs-unstable all are path
+  # nixpkgs-unstable(variable) is a path point to nixpkgs-unstable(git repo under /nix/store)'s flake.nix
   outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
       unstable = import nixpkgs-unstable { inherit system; };
     in
     {
@@ -31,7 +32,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.wsain = import ./wsain-home.nix;
-            home-manager.extraSpecialArgs = { nixpkgs-unstable = (import nixpkgs-unstable { inherit system; }); };
+            home-manager.extraSpecialArgs = { inherit unstable; };
           }
         ];
       };

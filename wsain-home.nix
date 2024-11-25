@@ -1,20 +1,20 @@
-{ config, pkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, unstable, ... }:
 
 {
   home.username = "wsain";
   home.homeDirectory = "/home/wsain";
 
-  # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
+  # Directly link the configuration file of the current folder to the specified location under the Home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
 
-  # 递归将某个文件夹中的文件，链接到 Home 目录下的指定位置
+  # Recursively link files in a folder to the specified location in the Home directory
   # home.file.".config/i3/scripts" = {
   #   source = ./scripts;
-  #   recursive = true;   # 递归整个文件夹
-  #   executable = true;  # 将其中所有文件添加「执行」权限
+  #   recursive = true;   # recursive the whole folder
+  #   executable = true;  # chmod +x
   # };
 
-  # 直接以 text 的方式，在 nix 配置文件中硬编码文件内容
+  # Directly hardcode the file content in the nix configuration file as text
   # home.file.".xxx".text = ''
   #     xxx
   # '';
@@ -25,9 +25,7 @@
   #   "Xft.dpi" = 172;
   # };
 
-  # 通过 home.packages 安装一些常用的软件
-  # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
-  # 建议将所有 GUI 软件，以及与 OS 关系不大的 CLI 软件，都通过 home.packages 安装
+  # install software for through home.packages
   home.packages = (with pkgs;[
     neofetch
 
@@ -98,11 +96,12 @@
     # ethtool
     pciutils # lspci
     usbutils # lsusb
-  ]) ++ (with nixpkgs-unstable; [
+  ]) ++ (with unstable; [
     neovim
+    nixfmt-rfc-style
   ]);
 
-  # git 相关配置
+  # git config
   programs.git = {
     enable = true;
     userName = "wsain";
@@ -128,7 +127,7 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    # TODO 在这里添加你的自定义 bashrc 内容
+    # bashrc content
     bashrcExtra = ''
       # If not running interactively, don't do anything
       [[ $- != *i* ]] && return
