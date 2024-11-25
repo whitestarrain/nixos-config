@@ -19,22 +19,27 @@
   outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, ... }@inputs:
     let
       system = "x86_64-linux";
-      unstable = import nixpkgs-unstable { inherit system; };
+      pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
     in
     {
-      nixosConfigurations.wsainNixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [
-          ./configuration.nix
+      nixosConfigurations = {
+        wsainNixos = nixpkgs.lib.nixosSystem {
+          inherit system;
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.wsain = import ./wsain-home.nix;
-            home-manager.extraSpecialArgs = { inherit unstable; };
-          }
-        ];
+          specialArgs = { inherit pkgs-unstable; };
+
+          modules = [
+            ./configuration.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.wsain = import ./wsain-home.nix;
+              home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
+            }
+          ];
+        };
       };
     };
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   home.username = "wsain";
@@ -96,7 +96,7 @@
     # ethtool
     pciutils # lspci
     usbutils # lsusb
-  ]) ++ (with unstable; [
+  ]) ++ (with pkgs-unstable; [
     neovim
     nixfmt-rfc-style
   ]);
