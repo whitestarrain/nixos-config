@@ -2,7 +2,7 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -17,7 +17,7 @@
     }
   ];
   networking.defaultGateway = "192.168.179.2";
-  networking.nameservers = ["114.114.114.114" "8.8.8.8"];
+  networking.nameservers = [ "114.114.114.114" "8.8.8.8" ];
 
   time.timeZone = "Asia/Shanghai";
 
@@ -45,7 +45,7 @@
   services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.wsain= {
+  users.users.wsain = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
