@@ -28,9 +28,11 @@
   # install software for through home.packages
   home.packages = (with pkgs;[
     neofetch
+    just
 
     # editor
     emacs
+    neovim
 
     nnn # terminal file manager
     ranger
@@ -96,8 +98,7 @@
     # ethtool
     pciutils # lspci
     usbutils # lsusb
-  ]) ++ (with pkgs-unstable; [
-    neovim
+
     nixfmt-rfc-style
   ]);
 
