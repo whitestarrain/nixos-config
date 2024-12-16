@@ -1,1 +1,6 @@
 .env
+result*
+.direnv
+.DS_Store
+logs/
+.gcroots

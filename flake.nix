@@ -6,38 +6,32 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with
-      # the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  # nixpkgs, home-manager, nixpkgs-unstable all are path
-  # nixpkgs-unstable(variable) is a path point to nixpkgs-unstable(git repo under /nix/store)'s flake.nix
-  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, ... }@flake-inputs:
     let
-      system = "x86_64-linux";
-      pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
+      helper = {
+        constants = import ./helper/constants.nix;
+        lib = import ./helper/lib.nix { inherit (nixpkgs) lib; };
+      };
+      genSpeicalArgs = system: {
+        inherit helper;
+        inherit flake-inputs;
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
     in
     {
       nixosConfigurations = {
-        wsainNixos = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = { inherit pkgs-unstable; };
-
+        nixos-vm = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = genSpeicalArgs system;
           modules = [
-            ./configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.wsain = import ./wsain-home.nix;
-              home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
-            }
+            ./hosts/nixos-vm/configuration.nix
           ];
         };
       };
