@@ -8,9 +8,13 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dotfiles = {
+      url = "github:whitestarrain/dotfiles";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, ... }@flake-inputs:
+  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, dotfiles, ... }@flake-inputs:
     let
       helper = {
         constants = import ./helper/constants.nix;

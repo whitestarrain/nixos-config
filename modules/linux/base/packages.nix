@@ -38,5 +38,6 @@
     gnupg
     just
     zstd
+    mlocate
   ];
 }
