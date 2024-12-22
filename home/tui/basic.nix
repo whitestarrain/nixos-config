@@ -4,6 +4,11 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  home.sessionPath = [
+    "$HOME/.bin"
+    "$HOME/.local/bin"
+  ];
+
   # install software for through home.packages
   home.packages = (with pkgs;[
     # archives
@@ -85,7 +90,7 @@
     ];
   };
   programs.bash = {
-    initExtra = (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/ranger.sh") ;
+    initExtra = (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/ranger.sh");
   };
 
 }

@@ -64,4 +64,10 @@
     nixfmt-rfc-style
 
   ]);
+
+  programs.go = {
+    enable = true;
+    goBin = ".local/bin";
+    goPath = ".local/share/go";
+  };
 }
