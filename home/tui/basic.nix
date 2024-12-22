@@ -54,6 +54,37 @@
     enable = true;
   };
 
+  # fzf
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  # ranger
+  programs.ranger = {
+    enable = true;
+    extraConfig = ''
+      # icon
+      default_linemode devicons
+    '';
+    settings = {
+      show_hidden = "true";
+    };
+    mappings = {
+      a = "console touch%space";
+      r = "rename_append";
+    };
+    plugins = [
+      {
+        name = "ranger_devicons";
+        src = builtins.fetchGit {
+          url = "https://github.com/alexanderjeurissen/ranger_devicons.git";
+          rev = "84db73d0a50a8c6085b3ec63f834c781b603e83e";
+        };
+      }
+    ];
+  };
+
   # bash
   programs.bash = {
     enable = true;
