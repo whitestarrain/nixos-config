@@ -1,4 +1,4 @@
-{ pkgs, lib, config, helper, flake-inputs, user, ... }:
+{ pkgs, helper, flake-inputs, user, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -84,29 +84,8 @@
       }
     ];
   };
-
-  # bash
   programs.bash = {
-    enable = true;
+    initExtra = (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/ranger.sh") ;
   };
-
-  home.file.".bashrc".source = lib.mkForce (pkgs.writeTextFile {
-    name = "bashrc";
-    text = builtins.concatStringsSep "\n\n" [
-      ''
-        ${config.programs.bash.bashrcExtra}
-        # Commands that should be applied only for interactive shells.
-        [[ $- == *i* ]] || return
-      ''
-      (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/base.sh")
-      (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/history.sh")
-      ''
-        ${config.programs.bash.initExtra}
-      ''
-    ];
-    checkPhase = ''
-      ${pkgs.stdenv.shellDryRun} "$target"
-    '';
-  });
 
 }
