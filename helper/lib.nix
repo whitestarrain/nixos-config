@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 rec {
   relativeToRoot = lib.path.append ../.;

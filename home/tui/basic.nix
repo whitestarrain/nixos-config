@@ -82,15 +82,11 @@
     plugins = [
       {
         name = "ranger_devicons";
-        src = builtins.fetchGit {
-          url = "https://github.com/alexanderjeurissen/ranger_devicons.git";
-          rev = "84db73d0a50a8c6085b3ec63f834c781b603e83e";
-        };
+        src = helper.sources.ranger_devicons;
       }
     ];
   };
   programs.bash = {
     initExtra = (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/ranger.sh");
   };
-
 }

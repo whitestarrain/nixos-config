@@ -16,12 +16,11 @@
 
   outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, dotfiles, ... }@flake-inputs:
     let
-      helper = {
-        constants = import ./helper/constants.nix;
-        lib = import ./helper/lib.nix { inherit (nixpkgs) lib; };
-      };
       genSpeicalArgs = system: {
-        inherit helper;
+        helper = import ./helper {
+          inherit (nixpkgs) lib;
+          pkgs = nixpkgs.legacyPackages.${system};
+        };
         inherit flake-inputs;
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;

@@ -1,3 +1,5 @@
+{ lib, pkgs, ... }:
+
 {
   email = "kaneki.lusou@gmail.com";
   githubEmail = "55945266+whitestarrain@users.noreply.github.com";
