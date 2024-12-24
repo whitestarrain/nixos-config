@@ -2,7 +2,8 @@
 
 let
   flakeTypeInputs = {
-    inherit (flake-inputs) nixpkgs home-manager;
+    nixpkgs = flake-inputs.nixpkgs.outPath ;
+    home-manager = flake-inputs.home-manager.outPath;
   };
 in
 {
