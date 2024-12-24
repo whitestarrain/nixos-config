@@ -1,16 +1,22 @@
 { config, lib, pkgs, flake-inputs, ... }:
 
+let
+  flakeTypeInputs = {
+    nixpkgs = flake-inputs.nixpkgs.outPath ;
+    home-manager = flake-inputs.home-manager.outPath;
+  };
+in
 {
-  nix.settings = {
+  nix.settings = rec {
     experimental-features = [ "nix-command" "flakes" ];
 
     trusted-users = [
-      "root"
       "@wheel"
+      "wsain"
     ];
 
     # substituers that will be considered before the official ones(https://cache.nixos.org)
-    substituters = [
+    substituters = lib.mkForce [
       # cache mirror located in China
       # status: https://mirrors.ustc.edu.cn/status/
       "https://mirrors.ustc.edu.cn/nix-channels/store"
@@ -21,7 +27,7 @@
       "https://nix-community.cachix.org"
       # "https://cache.nixos.org"
     ];
-
+    trusted-substituters = substituters;
     trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 
@@ -34,12 +40,18 @@
   # disable channel
   # nix.channel.enable = false;
 
-  # make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
-  nix.registry.nixpkgs.flake = flake-inputs.nixpkgs;
+  environment.etc = lib.mapAttrs' (
+    n: v: lib.nameValuePair "nix/inputs/${n}" { source = lib.mkForce v; }
+  ) flakeTypeInputs;
 
-  # but NIX_PATH is still used by many useful tools, so we set it to the same value as the one used by this flake.
-  # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
-  environment.etc."nix/inputs/nixpkgs".source = "${flake-inputs.nixpkgs}";
-  # https://github.com/NixOS/nix/issues/9574
-  nix.settings.nix-path = lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";
+  nix = {
+    nixPath = lib.mkForce [ "/etc/nix/inputs" ];
+    registry = lib.mapAttrs (_n: v: { flake = lib.mkForce { outPath = v; }; }) flakeTypeInputs;
+  };
+
+  # Disable conflicting settings from nixpkgs
+  nixpkgs.flake = {
+    setFlakeRegistry = false;
+    setNixPath = false;
+  };
 }

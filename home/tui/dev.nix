@@ -62,7 +62,6 @@
     nix-diff # Explain why two Nix derivations differ
     hydra-check # check hydra(nix's build farm) for the build status of a package
     nixfmt-rfc-style
-
   ]);
 
   programs.go = {
