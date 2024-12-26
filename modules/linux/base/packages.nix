@@ -33,6 +33,9 @@
     pciutils # lspci
     usbutils # lsusb
 
+    # boot
+    efibootmgr
+
     # misc
     neofetch
     gnupg

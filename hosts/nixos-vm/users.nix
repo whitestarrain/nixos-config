@@ -1,10 +1,19 @@
 { config, lib, pkgs, helper, ... }:
 
 {
+  # users.mutableUsers = false;
+
   users.users.wsain = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "mlocate" ];
     openssh.authorizedKeys.keys = helper.constants.sshAuthorizedKeys;
+  };
+
+  users.groups = {
+    wsain = {};
+    docker = {};
+    container = {};
+    mlocate = {};
   };
 
   home-manager.users.wsain = rec {
