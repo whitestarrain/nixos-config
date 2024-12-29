@@ -2,7 +2,7 @@
 
 let
   flakeTypeInputs = {
-    nixpkgs = flake-inputs.nixpkgs.outPath ;
+    nixpkgs = flake-inputs.nixpkgs.outPath;
     home-manager = flake-inputs.home-manager.outPath;
   };
 in
@@ -25,7 +25,7 @@ in
       "https://mirror.sjtu.edu.cn/nix-channels/store"
 
       "https://nix-community.cachix.org"
-      # "https://cache.nixos.org"
+      "https://cache.nixos.org"
     ];
     trusted-substituters = substituters;
     trusted-public-keys = [
@@ -40,9 +40,11 @@ in
   # disable channel
   # nix.channel.enable = false;
 
-  environment.etc = lib.mapAttrs' (
-    n: v: lib.nameValuePair "nix/inputs/${n}" { source = lib.mkForce v; }
-  ) flakeTypeInputs;
+  environment.etc = lib.mapAttrs'
+    (
+      n: v: lib.nameValuePair "nix/inputs/${n}" { source = lib.mkForce v; }
+    )
+    flakeTypeInputs;
 
   nix = {
     nixPath = lib.mkForce [ "/etc/nix/inputs" ];

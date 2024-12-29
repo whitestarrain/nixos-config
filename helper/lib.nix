@@ -2,7 +2,17 @@
 
 rec {
   relativeToRoot = lib.path.append ../.;
-  scanPaths = path:
+  scanFilePaths = path:
+    builtins.map
+      (f: (path + "/${f}"))
+      (builtins.attrNames
+        (lib.attrsets.filterAttrs
+          (
+            path: _type:
+              (_type == "regular")
+          )
+          (builtins.readDir path)));
+  scanNixPaths = path:
     builtins.map
       (f: (path + "/${f}"))
       (builtins.attrNames
@@ -16,6 +26,6 @@ rec {
               )
           )
           (builtins.readDir path)));
-  scanRelativeRootPath = path: scanPaths (relativeToRoot path);
+  scanNixRelativeRootPath = path: scanNixPaths (relativeToRoot path);
 }
 

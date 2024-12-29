@@ -82,7 +82,7 @@
     plugins = [
       {
         name = "ranger_devicons";
-        src = helper.sources.ranger_devicons;
+        src = helper.static.ranger_devicons;
       }
     ];
   };

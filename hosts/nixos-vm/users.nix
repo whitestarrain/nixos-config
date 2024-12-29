@@ -11,14 +11,16 @@
   };
 
   users.groups = {
-    wsain = {};
-    docker = {};
-    container = {};
-    mlocate = {};
+    wsain = { };
+    docker = { };
+    container = { };
+    mlocate = { };
   };
 
   home-manager.users.wsain = rec {
-    imports = (helper.lib.scanRelativeRootPath "home/tui") ++ [{ _module.args = { user = "wsain"; }; }];
+    imports = (helper.lib.scanNixRelativeRootPath "home/tui")
+      ++ [ (helper.lib.relativeToRoot "home/gui") ]
+      ++ [{ _module.args = { user = "wsain"; }; }];
     home.username = "wsain";
     home.homeDirectory = "/home/wsain";
     home.stateVersion = "24.05";

@@ -6,8 +6,12 @@
     ./networking.nix
     ./users.nix
   ]
-  ++ (helper.lib.scanRelativeRootPath "modules/common")
-  ++ (helper.lib.scanRelativeRootPath "modules/linux/base")
+  ++ (helper.lib.scanNixRelativeRootPath "modules/common")
+  ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
+  ++ [
+    (helper.lib.relativeToRoot "modules/linux/desktop/xserver")
+    (helper.lib.relativeToRoot "modules/linux/desktop/pipewire.nix")
+  ]
   ;
 
   # The first version of NixOS installed on the machine.

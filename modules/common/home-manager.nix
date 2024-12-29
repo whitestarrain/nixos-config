@@ -11,5 +11,5 @@
   home-manager.useUserPackages = true;
 
   # extra args
-  home-manager.extraSpecialArgs = specialArgs;
+  home-manager.extraSpecialArgs = specialArgs // { sysConfig = config; };
 }
