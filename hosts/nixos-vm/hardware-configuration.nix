@@ -11,21 +11,6 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  boot.loader.grub = {
-    # UEFI boot, need to set device to "nodev"
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = false;
-  };
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
-
-  # boot animation
-  # boot.plymouth = {
-  #   enable = true;
-  # };
-
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/6c985bcf-be72-4bdc-974d-7787c5f79988";
