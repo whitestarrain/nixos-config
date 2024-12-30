@@ -33,6 +33,8 @@
       terminus_font_ttf
       ubuntu_font_family
 
+      sarasa-gothic
+
       julia-mono
       dejavu_fonts
     ]) ++ [
@@ -41,6 +43,7 @@
       pkgs-unstable.nerd-fonts.jetbrains-mono
       pkgs-unstable.nerd-fonts.iosevka
       pkgs-unstable.nerd-fonts.hack
+      pkgs-unstable.nerd-fonts.sauce-code-pro
     ];
 
     # user defined fonts
