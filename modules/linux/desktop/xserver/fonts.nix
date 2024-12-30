@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   fonts = {
     enableDefaultPackages = false;
     fontDir.enable = true;
 
-    packages = with pkgs; [
+    packages = (with pkgs; [
       # icon fonts
       material-design-icons
       font-awesome
@@ -29,27 +29,18 @@
       source-sans-pro
       source-serif
       source-serif-pro
+      source-code-pro
       terminus_font_ttf
       ubuntu_font_family
 
       julia-mono
       dejavu_fonts
-
-      # nerdfonts
-      # https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/data/fonts/nerdfonts/shas.nix
-      (nerdfonts.override {
-        fonts = [
-          "NerdFontsSymbolsOnly"
-          "FiraCode"
-          "JetBrainsMono"
-          "Iosevka"
-          "Hack"
-        ];
-      })
-      fira-code
-      jetbrains-mono
-      iosevka
-      hack-font
+    ]) ++ [
+      pkgs-unstable.nerd-fonts.symbols-only
+      pkgs-unstable.nerd-fonts.fira-code
+      pkgs-unstable.nerd-fonts.jetbrains-mono
+      pkgs-unstable.nerd-fonts.iosevka
+      pkgs-unstable.nerd-fonts.hack
     ];
 
     # user defined fonts

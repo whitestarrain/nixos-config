@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 9efa774..6fa66a4 100644
+index 9efa774..ed2a828 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,8 +5,12 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -10,7 +10,7 @@ index 9efa774..6fa66a4 100644
 -static const char dmenufont[]       = "monospace:size=10";
 +static const char *fonts[] = {
 +		"JetBrainsMono Nerd Font:pixelsize=14"
-+		"Noto Sans Mono CJK SC:pixelsize=14"
++		"Noto Sans CJK SC:pixelsize=14"
 +		"Symbols Nerd Font:pixelsize=14"
 +};
 +static const char dmenufont[] = "JetBrainsMono Nerd Font:pixelsize=14:type=Regular:antialias=true:autohint=true";
