@@ -2,9 +2,11 @@
 
 {
   imports = [
-    ./dwm.nix
     ./fonts.nix
-    ./firefox.nix
+    ./lightdm.nix
+    ./dwm.nix
+    ./hidpi.nix
+    ./picom.nix
   ];
   services = {
     gvfs.enable = true; # Mount, trash, and other functionalities
@@ -12,9 +14,6 @@
     # systemd.defaultUnit to change default target
     xserver = {
       enable = true;
-      displayManager = {
-        lightdm.enable = true;
-      };
       xkb.layout = "us";
       autoRepeatDelay = 200;
       autoRepeatInterval = 35;

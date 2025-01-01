@@ -4,22 +4,24 @@
     fontDir.enable = true;
 
     packages = (with pkgs; [
-      # icon fonts
-      material-design-icons
-      font-awesome
-
-      noto-fonts-emoji
-
+      dejavu_fonts
       fira-code
       fira-code-symbols
       font-awesome
+      font-awesome
       hanazono
+      julia-mono
       liberation_ttf
+      material-design-icons
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+      noto-fonts-emoji
       noto-fonts-emoji-blob-bin
       noto-fonts-extra
+      recursive
+      sarasa-gothic
+      source-code-pro
       source-code-pro
       source-han-code-jp
       source-han-mono
@@ -29,14 +31,11 @@
       source-sans-pro
       source-serif
       source-serif-pro
-      source-code-pro
       terminus_font_ttf
+      ubuntu-sans-mono
       ubuntu_font_family
-
-      sarasa-gothic
-
-      julia-mono
-      dejavu_fonts
+      wqy_microhei
+      wqy_zenhei
     ]) ++ [
       pkgs-unstable.nerd-fonts.symbols-only
       pkgs-unstable.nerd-fonts.fira-code
