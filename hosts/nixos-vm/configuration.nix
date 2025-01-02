@@ -1,19 +1,13 @@
 { config, lib, pkgs, helper, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./boot.nix
-    ./networking.nix
-    ./users.nix
-  ]
-  ++ (helper.lib.scanNixRelativeRootPath "modules/common")
-  ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
-  ++ [
-    (helper.lib.relativeToRoot "modules/linux/desktop/xserver")
-    (helper.lib.relativeToRoot "modules/linux/desktop/pipewire.nix")
-  ]
-  ;
+  imports = (
+    [ ./hardware-configuration.nix ./boot.nix ./networking.nix ]
+    ++ (helper.lib.scanNixRelativeRootPath "modules/common")
+    ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
+    ++ (helper.lib.relativeToRootFiles "modules/linux/desktop" [ "xserver" "pipewire.nix" ])
+    ++ [ ./users.nix ]
+  );
 
   # The first version of NixOS installed on the machine.
   # And is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

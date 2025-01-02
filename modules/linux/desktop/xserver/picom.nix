@@ -36,11 +36,11 @@
       fade-in-step = 0.07;
       fade-out-step = 0.07;
 
-      corner-radius = 4;
+      corner-radius = 9;
 
       # Backend
-      # backend = "xrender";
-      backend ="glx";
+      backend = "xrender";
+      # backend ="glx";
 
       vsync = true;
 

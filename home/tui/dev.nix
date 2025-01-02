@@ -2,12 +2,12 @@
 
 {
   home.packages = (with pkgs;[
-    # Bash
+    # bash
     dos2unix
     shellcheck
     shfmt
 
-    # C
+    # c
     autoconf
     automake
     binutils
@@ -34,23 +34,23 @@
     texinfo
     which
 
-    # Golang
+    # golang
     go
 
-    # LaTeX
+    # latex
     # texlive.combined.scheme-full
 
-    # Lua
+    # lua
     lua
 
-    # NodeJS
+    # nodejs
     nodejs
     nodePackages.npm
 
-    # Python
+    # python
     python313
 
-    # Java
+    # java
     jdk17
 
     # nix related

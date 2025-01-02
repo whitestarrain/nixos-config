@@ -1,7 +1,11 @@
 { lib, pkgs, ... }:
 
 rec {
-  relativeToRoot = lib.path.append ../.;
+  relativeToRoot = path: lib.path.append ../. path;
+  relativeToRootFiles = path: files:
+    builtins.map
+      (f: lib.path.append (relativeToRoot path) f)
+      files;
   scanFilePaths = path:
     builtins.map
       (f: (path + "/${f}"))
