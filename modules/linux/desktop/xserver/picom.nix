@@ -36,7 +36,7 @@
       fade-in-step = 0.07;
       fade-out-step = 0.07;
 
-      corner-radius = 9;
+      # corner-radius = 9;
 
       # Backend
       backend = "xrender";
@@ -49,10 +49,10 @@
       use-damage = true;
 
       # Window type settings
-      wintypes = {
-        dialog = { animation = "zoom"; animation-unmap = "zoom"; fade = true; shadow = true; blur-background = false; focus = true; };
-        splash = { animation = "zoom"; animation-unmap = "slide-down"; fade = true; shadow = true; blur-background = false; focus = false; };
-      };
+      # wintypes = {
+      #   dialog = { animation = "zoom"; animation-unmap = "zoom"; fade = true; shadow = true; blur-background = false; focus = true; };
+      #   splash = { animation = "zoom"; animation-unmap = "slide-down"; fade = true; shadow = true; blur-background = false; focus = false; };
+      # };
     };
   };
 }
