@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-registry = {
+      url = "github:nixos/flake-registry";
+      flake = false;
+    };
     dotfiles = {
       url = "github:whitestarrain/dotfiles";
       flake = false;

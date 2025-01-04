@@ -35,6 +35,9 @@ in
       # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     builders-use-substitutes = true;
+
+    # prevent flake from downloading registry at every flake command
+    flake-registry = "${flake-inputs.flake-registry}/flake-registry.json";
   };
 
   # disable channel
