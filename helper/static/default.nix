@@ -6,8 +6,10 @@
   #   rev = "84db73d0a50a8c6085b3ec63f834c781b603e83e";
   # };
   ranger_devicons = ./ranger_devicons;
-  dwm-patches = (helperLib.scanFilePaths ./dwm-patches);
-  dmenu-patches = (helperLib.scanFilePaths ./dmenu-patches);
+  dwm = ./dwm;
+  dmenu = ./dmenu;
+  st = ./st;
+  dmenu-patches = [ ./dmenu.patch ];
   urxvt-conf = ./urxvt.conf;
   xresources-conf = ./xresources.conf;
 }

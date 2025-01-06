@@ -2,24 +2,31 @@
 
 {
   environment.systemPackages = with pkgs; [
-    st
     alacritty
     rxvt-unicode
-    (dmenu.override {
-      patches = helper.static.dmenu-patches;
+    (dmenu.overrideAttrs (finalAttrs: previousAttrs: {
+      src = helper.static.dmenu;
+      preConfigure = ''
+        makeFlagsArray+=(
+          PREFIX="$out"
+          CC="$CC"
+          # default config.mk hardcodes dependent libraries and include paths
+          INCS="`$PKG_CONFIG --cflags fontconfig x11 xft xinerama`"
+          LIBS="`$PKG_CONFIG --libs   fontconfig x11 xft xinerama` -lm"
+        )
+      '';
+    }))
+    (st.overrideAttrs {
+      src = helper.static.st;
     })
   ];
-
-  # debug dwm:
-    # Xephyr -br -ac -noreset -screen 800x600 :1
-    # DISPLAY=:1 dwm
 
   # dwm
   services.xserver.windowManager = {
     dwm = {
       enable = true;
-      package = pkgs.dwm.override {
-        patches = helper.static.dwm-patches;
+      package = pkgs.dwm.overrideAttrs {
+        src = helper.static.dwm;
       };
     };
   };

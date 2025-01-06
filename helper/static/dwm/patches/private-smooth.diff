@@ -1,8 +1,8 @@
-diff --git a/dwm.c b/dwm.c
-index f1d86b2..7f730e5 100644
+diff --git a/helper/static/dwm/dwm.c b/helper/static/dwm/dwm.c
+index 4717601..5173cc1 100644
 --- a/dwm.c
 +++ b/dwm.c
-@@ -1172,7 +1172,7 @@ movemouse(const Arg *arg)
+@@ -1258,7 +1258,7 @@ movemouse(const Arg *arg)
  			handler[ev.type](&ev);
  			break;
  		case MotionNotify:
@@ -10,8 +10,8 @@ index f1d86b2..7f730e5 100644
 +			if ((ev.xmotion.time - lasttime) <= (1000 / 180))
  				continue;
  			lasttime = ev.xmotion.time;
- 
-@@ -1326,7 +1326,7 @@ resizemouse(const Arg *arg)
+
+@@ -1490,7 +1490,7 @@ resizemouse(const Arg *arg)
  			handler[ev.type](&ev);
  			break;
  		case MotionNotify:
@@ -19,4 +19,4 @@ index f1d86b2..7f730e5 100644
 +			if ((ev.xmotion.time - lasttime) <= (1000 / 180))
  				continue;
  			lasttime = ev.xmotion.time;
- 
+
