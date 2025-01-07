@@ -18,13 +18,7 @@
 
       blur-background = false;
       blur-background-frame = false;
-      blur-background-exclude = [
-        "class_g ^= 'dwm'"
-        "class_g = 'Chromium'"
-        "class_g = 'Firefox'"
-        "class_g = 'Gimp'"
-        "name    = 'normalal'"
-      ];
+      blur-background-exclude = [];
 
       shadow = true;
       shadow-radius = 10;
@@ -33,8 +27,8 @@
       shadow-offset-y = -9;
 
       fading = true;
-      fade-in-step = 0.07;
-      fade-out-step = 0.07;
+      fade-in-step = 0.1;
+      fade-out-step = 0.1;
 
       # corner-radius = 9;
 
