@@ -7,6 +7,6 @@
       enable = true;
       # windowManager.command = "…";
     };
-    xresources.extraConfig = builtins.readFile helper.static.xresources-conf;
+    xresources.extraConfig = builtins.readFile ./xresources.conf;
   };
 }

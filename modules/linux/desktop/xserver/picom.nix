@@ -4,17 +4,17 @@
   services.picom = {
     enable = true;
     settings = {
-      # Animations
-      animations = true;
-      animation-for-open-window = "slide-up";
-      animation-for-transient-window = "slide-down";
-      animation-for-unmap-window = "slide-up";
-      animation-stiffness = 300.0;
-      animation-window_mass = 1.0;
-      animation-dampening = 26;
-      animation-delta = 10;
-      animation-force_steps = false;
-      animation-clamping = true;
+      # Animations: need fork version
+      # animations = true;
+      # animation-for-open-window = "slide-up";
+      # animation-for-transient-window = "slide-down";
+      # animation-for-unmap-window = "slide-up";
+      # animation-stiffness = 300.0;
+      # animation-window_mass = 1.0;
+      # animation-dampening = 26;
+      # animation-delta = 10;
+      # animation-force_steps = false;
+      # animation-clamping = true;
 
       blur-background = false;
       blur-background-frame = false;
