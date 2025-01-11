@@ -6,7 +6,7 @@
     ./lightdm.nix
     ./dwm.nix
     ./hidpi.nix
-    ./picom.nix
+    ./picom
   ];
   services = {
     gvfs.enable = true; # Mount, trash, and other functionalities
