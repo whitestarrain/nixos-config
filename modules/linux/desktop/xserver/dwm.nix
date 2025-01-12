@@ -1,5 +1,10 @@
-{ pkgs, helper, ... }:
+{ pkgs, helper, lib, ... }:
 
+let
+  dwmblocks = (pkgs.dwmblocks.overrideAttrs {
+    src = helper.static.dwmblocks;
+  });
+in
 {
   environment.systemPackages = with pkgs; [
     alacritty
@@ -19,6 +24,7 @@
     (st.overrideAttrs {
       src = helper.static.st;
     })
+    dwmblocks
   ];
 
   # dwm
@@ -29,5 +35,18 @@
         src = helper.static.dwm;
       };
     };
+    # run dwmblock in session config
+    session = lib.singleton
+      {
+        name = "dwm";
+        start =
+          ''
+            export _JAVA_AWT_WM_NONREPARENTING=1
+            ${dwmblocks}/bin/dwmblocks &
+            dwm &
+            # waitpid must be the dwm's pid
+            waitPID=$!
+          '';
+      };
   };
 }

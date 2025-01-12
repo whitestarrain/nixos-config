@@ -9,8 +9,6 @@
   dwm = ./dwm;
   dmenu = ./dmenu;
   st = ./st;
-  dmenu-patches = [ ./dmenu.patch ];
-  urxvt-conf = ./urxvt.conf;
-  xresources-conf = ./xresources.conf;
+  dwmblocks = ./dwmblocks;
 }
 
