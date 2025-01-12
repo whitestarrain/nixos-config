@@ -14,7 +14,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 6;       /* vertical padding of bar */
 static const int sidepad            = 15;       /* horizontal padding of bar */
-static const char *fonts[] = {"Sauce Code Pro Nerd Font Mono:size=14",
+static const char *fonts[] = {"Sauce Code Pro Nerd Font:size=14",
                               "Source Han Mono SC:size=14",
                               "Symbols Nerd Font Mono:size=14"};
 static const char dmenufont[] = "Sauce Code Pro Nerd Font Mono:size=14";
