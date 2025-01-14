@@ -2,16 +2,15 @@
 
 {
   imports = [
+    ./dconf.nix
     ./fonts.nix
     ./lightdm.nix
     ./dwm.nix
     ./hidpi.nix
     ./picom
+    ./file-explorer.nix
   ];
   services = {
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    tumbler.enable = true; # Thumbnail support for images
-    # systemd.defaultUnit to change default target
     xserver = {
       enable = true;
       xkb.layout = "us";

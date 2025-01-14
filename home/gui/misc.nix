@@ -5,8 +5,5 @@
     mupdf
     flameshot
     clash-meta
-    mpv
-    sxiv
-    w3m
   ]);
 }
