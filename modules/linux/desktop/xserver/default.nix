@@ -9,6 +9,7 @@
     ./hidpi.nix
     ./picom
     ./file-explorer.nix
+    ./clipboard.nix
   ];
   services = {
     xserver = {
