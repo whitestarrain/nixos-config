@@ -2,15 +2,10 @@
 
 {
   imports = (
-    [ ./hardware-configuration.nix ./boot.nix ./networking.nix ]
+    [ ./hardware-configuration.nix ./boot.nix ./networking.nix ./nvidia.nix ]
     ++ (helper.lib.scanNixRelativeRootPath "modules/common")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
-    ++ (helper.lib.relativeToRootFiles "modules/linux/desktop" [
-      "xserver"
-      "pipewire.nix"
-      "tlp.nix"
-      "libinput.nix"
-    ])
+    ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")
     ++ [ ./users.nix ]
   );
 

@@ -1,16 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, helper, ... }:
 
 {
-  imports = [
-    ./dconf.nix
-    ./fonts.nix
-    ./lightdm.nix
-    ./dwm.nix
-    ./hidpi.nix
-    ./picom
-    ./file-explorer.nix
-    ./clipboard.nix
-  ];
+  imports = (helper.lib.scanNixPaths ./.);
   services = {
     xserver = {
       enable = true;
