@@ -1,14 +1,6 @@
 { pkgs, config, ... }:
 
 {
-  # home.pointerCursor = {
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  #   package = pkgs.capitaine-cursors;
-  #   name = "capitaine-cursors";
-  #   size = 24;
-  # };
-
   # gtk's theme settings, generate files:
   #   1. ~/.gtkrc-2.0
   #   2. ~/.config/gtk-3.0/settings.ini
@@ -33,11 +25,5 @@
       name = "Andromeda";
       package = pkgs.andromeda-gtk-theme;
     };
-
-    # cursorTheme = {
-    #   package = pkgs.capitaine-cursors;
-    #   name = "capitaine-cursors";
-    #   size = 24;
-    # };
   };
 }
