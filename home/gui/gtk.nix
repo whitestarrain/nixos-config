@@ -26,8 +26,8 @@
     };
 
     theme = {
-      name = "Andromeda";
-      package = pkgs.andromeda-gtk-theme;
+      name = "Fluent-Dark";
+      package = pkgs.fluent-gtk-theme;
     };
   };
 }
