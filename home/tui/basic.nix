@@ -19,6 +19,7 @@
     gnutar
     # terminal file manager
     ranger
+    ueberzugpp # used to preview image in terminal
     # quick cd
     zoxide
     # search, find
@@ -71,6 +72,8 @@
     extraConfig = ''
       # icon
       default_linemode devicons
+      set preview_images true
+      set preview_images_method ueberzug
     '';
     settings = {
       show_hidden = "true";
