@@ -43,6 +43,8 @@
       pkgs-unstable.nerd-fonts.iosevka
       pkgs-unstable.nerd-fonts.hack
       pkgs-unstable.nerd-fonts.sauce-code-pro
+      pkgs-unstable.nerd-fonts.noto
+      pkgs-unstable.nerd-fonts.dejavu-sans-mono
     ];
 
     # user defined fonts
