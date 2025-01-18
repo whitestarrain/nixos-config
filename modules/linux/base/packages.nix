@@ -17,11 +17,13 @@
     file
     which
     tree
+    ripgrep
 
     # monitor
     btop # bashtop, replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
+    tcpdump
     # system call monitoring
     strace # system call monitoring
     ltrace # library call monitoring
@@ -42,5 +44,7 @@
     just
     zstd
     mlocate
+    openssl
+    nix-tree
   ];
 }
