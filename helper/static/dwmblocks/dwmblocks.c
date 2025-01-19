@@ -21,6 +21,7 @@
 typedef struct {
 	char* icon;
 	char* command;
+	void (*func)(char *, int);
 	unsigned int interval;
 	unsigned int signal;
 } Block;
@@ -61,11 +62,19 @@ void getcmd(const Block *block, char *output)
 	//make sure status is same until output is ready
 	char tempstatus[CMDLENGTH] = {0};
 	strcpy(tempstatus, block->icon);
-	FILE *cmdf = popen(block->command, "r");
-	if (!cmdf)
+	if (!block->command && !block->func){
 		return;
+	}
 	int i = strlen(block->icon);
-	fgets(tempstatus+i, CMDLENGTH-i-delimLen, cmdf);
+	if (block->command) {
+		FILE *cmdf = popen(block->command, "r");
+		if (!cmdf)
+			return;
+		fgets(tempstatus+i, CMDLENGTH-i-delimLen, cmdf);
+		pclose(cmdf);
+	} else {
+		block->func(tempstatus+i, CMDLENGTH-i-delimLen);
+	}
 	i = strlen(tempstatus);
 	//if block and command output are both not empty
 	if (i != 0) {
@@ -78,7 +87,6 @@ void getcmd(const Block *block, char *output)
 			tempstatus[i++] = '\0';
 	}
 	strcpy(output, tempstatus);
-	pclose(cmdf);
 }
 
 void getcmds(int time)
