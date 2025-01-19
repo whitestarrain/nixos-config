@@ -36,6 +36,9 @@
     bat # better cat
     tldr # cheatsheet
     just
+    bc
+    cloc
+    scc # replace cloc
   ]);
 
   programs.git = {

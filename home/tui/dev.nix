@@ -42,6 +42,7 @@
 
     # lua
     lua
+    lua-language-server
 
     # nodejs
     nodejs
@@ -52,6 +53,14 @@
 
     # java
     jdk17
+
+    # python
+    black
+    virtualenv
+    yapf
+
+    # Rust
+    rustup
 
     # nix related
     nix-output-monitor # it provides the command `nom` works just like `nix` with more details log output
@@ -69,4 +78,9 @@
     goBin = ".local/bin";
     goPath = ".local/share/go";
   };
+
+  xdg.configFile."pip/pip.conf".text = ''
+    [global]
+    index-url = https://mirrors.aliyun.com/pypi/simple
+  '';
 }
