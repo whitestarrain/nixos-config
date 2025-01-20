@@ -7,6 +7,7 @@
     matchConfig.Name = "eno1";
     networkConfig.DHCP = "ipv4";
   };
+  # `sudo rfkill unblock all` to unlock wlan0
   systemd.network.networks.wlan0 = {
     matchConfig.Name = "wlan0";
     networkConfig.DHCP = "ipv4";
