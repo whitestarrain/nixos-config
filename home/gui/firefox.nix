@@ -54,6 +54,8 @@
         "general.smoothScroll.stopDecelerationWeighting" = 0.82;
         "mousewheel.min_line_scroll_amount" = 10;
         "general.smoothScroll.msdPhysics.enabled" = true;
+        # zoom
+        "apz.doubletapzoom.defaultzoomin" = 1.2;
       };
     };
   };
