@@ -2,7 +2,7 @@
 #define TOOLKITS_H 1
 
 #define MAX_CORE_NUM 16
-void get_cpu_usage(char *buf, int buf_size){
+void get_cpu_usage(char *buf, int buf_size) {
 	// total and idel time
 	static long int core_last_sum_idle[MAX_CORE_NUM][2] = {0};
 	long int core_sum_idle[MAX_CORE_NUM][2] = {0};
@@ -19,7 +19,7 @@ void get_cpu_usage(char *buf, int buf_size){
 		strncpy(buf, "--", buf_size);
 	}
 
-	while ((read = getline(&line, &len, fp)) != -1) {
+	while ((read = getline(&line, &len, fp)) != -1 && core_id < MAX_CORE_NUM) {
 		if (strlen(line) < 3 || memcmp(line, "cpu", 3) != 0){
 			break;
 		}
@@ -42,6 +42,7 @@ void get_cpu_usage(char *buf, int buf_size){
 
 		core_id++;
 	}
+  core_id--;
 
 	// close and free
 	fclose(fp);
@@ -56,7 +57,7 @@ void get_cpu_usage(char *buf, int buf_size){
 		}
 		avg += cpu_usage[i];
 	}
-	avg = avg / core_id;
+	avg = avg / (core_id + 1);
 
 	snprintf(buf, buf_size, "%-5.1f %-4.1f", max, avg);
 }
