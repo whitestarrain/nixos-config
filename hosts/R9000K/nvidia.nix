@@ -1,6 +1,8 @@
 { pkgs, lib, ... }:
 
 {
+  # neet to enable hybird mode in bios to detect integrated graphics !!!!!!
+
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
