@@ -2,7 +2,7 @@
 
 {
   imports = (
-    [ ./hardware-configuration.nix ./boot.nix ./networking.nix ./nvidia.nix ]
+    [ ./hardware-configuration.nix ./boot.nix ./networking.nix ] # add nvidia config after install
     ++ (helper.lib.scanNixRelativeRootPath "modules/common")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")

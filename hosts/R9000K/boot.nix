@@ -5,7 +5,7 @@
     # UEFI boot, need to set device to "nodev"
     device = "nodev";
     efiSupport = true;
-    useOSProber = false;
+    useOSProber = true;
   };
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
