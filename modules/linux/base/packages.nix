@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     # basic
     vim
+    neovim
     wget
     curl
     git
@@ -24,16 +25,24 @@
     iotop # io monitoring
     iftop # network monitoring
     tcpdump
+    sysstat
     # system call monitoring
     strace # system call monitoring
     ltrace # library call monitoring
     lsof # list open files
     # system tools
-    sysstat
     lm_sensors # for `sensors` command
-    # ethtool
+    ethtool
     pciutils # lspci
     usbutils # lsusb
+    lshw
+    parted
+    hdparm
+    dmidecode
+
+    # usb
+    udisks
+    eject
 
     # boot
     efibootmgr
@@ -47,4 +56,11 @@
     openssl
     nix-tree
   ];
+
+  # BCC - Tools for BPF-based Linux IO analysis, networking, monitoring, and more
+  # https://github.com/iovisor/bcc
+  # programs.bcc.enable = true;
+
+  # replace default editor with neovim
+  environment.variables.EDITOR = "nvim";
 }
