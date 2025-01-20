@@ -1,5 +1,7 @@
 # About
 
+![](./images/2025-01-21_01-49.png)
+
 wsain's nixos config
 
 Note: Since nixos-rebuild now does not support git submodules, the configuration below will not be managed by nixos.
