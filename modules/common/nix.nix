@@ -7,6 +7,9 @@ let
   };
 in
 {
+  # to install nvidia driver, need to enable unfree packages
+  nixpkgs.config.allowUnfree = lib.mkForce true;
+
   nix.settings = rec {
     experimental-features = [ "nix-command" "flakes" ];
 
