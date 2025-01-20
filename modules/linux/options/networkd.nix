@@ -1,11 +1,5 @@
 { pkgs, lib, config, ... }:
 
-let
-  dnsServers = [
-    "8.8.8.8"
-    "2001:4860:4860::8888"
-  ];
-in
 {
   networking = {
     # systemd can handle dhcp itself, disable dhcpd

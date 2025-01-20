@@ -1,5 +1,11 @@
 { pkgs, lib, config, ... }:
 
+let
+  dnsServers = [
+    "8.8.8.8"
+    "2001:4860:4860::8888"
+  ];
+in
 {
   # enable power saving on Intel Wi-Fi
   boot.extraModprobeConfig = ''
