@@ -44,6 +44,13 @@
             ./hosts/nixos-vm/configuration.nix
           ];
         };
+        R9000K = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = genSpeicalArgs system;
+          modules = [
+            ./hosts/R9000K/configuration.nix
+          ];
+        };
       };
     };
 }

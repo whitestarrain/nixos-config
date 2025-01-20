@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, helper, ... }:
 
 {
   imports = (helper.lib.relativeToRootFiles "modules/linux/options" [ "networkd.nix" ]);
