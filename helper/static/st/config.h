@@ -5,12 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "DejaVuSansM Nerd Font Mono:style=Regular:antialias=True:pixelsize=20";
+static char *font = "DejaVuSansM Nerd Font Mono:style=Regular:antialias=True:size=16";
 /* Spare fonts */
 static char *font2[] = {
-	"Noto Sans CJK SC:pixelsize=20",
-	"Symbols Nerd Font Mono:pixelsize=20",
-	"Noto Emoji Color:pixelsize=20"
+	"Noto Sans CJK SC:size=16",
+	"Symbols Nerd Font Mono:size=16",
+	"Noto Emoji Color:size=16"
 };
 
 static int borderpx = 2;
