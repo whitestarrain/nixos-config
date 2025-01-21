@@ -2,7 +2,13 @@
 
 {
   environment.systemPackages = with pkgs; [
-    pulseaudio # provides `pactl`, which is required by some apps(e.g. sonic-pi)
+    # Sound Open Firmware
+    sof-firmware
+    pulseaudio # provides `pactl`, but wpctl privated by wireplumber is better
+    # gui tool
+    helvum
+    pavucontrol
+    alsa-utils
   ];
 
   services.pipewire = {
