@@ -6,6 +6,10 @@
     device = "nodev";
     efiSupport = true;
     useOSProber = true;
+    # high resolutions maybe cause input delay
+    gfxmodeBios = "2560x1600";
+    gfxmodeEfi = "2560x1600";
+    fontSize = 32;
   };
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
