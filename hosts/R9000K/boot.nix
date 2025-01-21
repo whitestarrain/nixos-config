@@ -7,9 +7,8 @@
     efiSupport = true;
     useOSProber = true;
     # high resolutions maybe cause input delay
-    gfxmodeBios = "2560x1600";
-    gfxmodeEfi = "2560x1600";
-    fontSize = 32;
+    gfxmodeBios = "800x600";
+    gfxmodeEfi = "800x600";
   };
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
