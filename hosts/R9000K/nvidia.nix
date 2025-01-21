@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   environment.systemPackages = [
@@ -52,6 +57,20 @@
     # neet to enable hybird mode in bios to detect integrated graphics !!!!!!
     amdgpuBusId = "PCI:06:0:0";
     nvidiaBusId = "PCI:01:0:0";
+  };
+
+  specialisation = {
+    nvidia-sync-mode.configuration = {
+      system.nixos.tags = [ "nvidia-sync-mode" ];
+      hardware.nvidia = {
+        powerManagement.enable = lib.mkForce false;
+        powerManagement.finegrained = lib.mkForce false;
+
+        prime.sync.enable = lib.mkForce true;
+        prime.offload.enable = lib.mkForce false;
+        prime.offload.enableOffloadCmd = lib.mkForce false;
+      };
+    };
   };
 
 }
