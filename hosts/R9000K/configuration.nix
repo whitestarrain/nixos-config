@@ -6,6 +6,7 @@
     ++ (helper.lib.scanNixRelativeRootPath "modules/common")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")
+    ++ (helper.lib.relativeToRootFiles "modules/linux/options" [ "tlp.nix" ])
     ++ [ ./users.nix ]
   );
 

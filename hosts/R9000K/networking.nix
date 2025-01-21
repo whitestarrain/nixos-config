@@ -1,7 +1,13 @@
 { lib, helper, ... }:
 
 {
-  imports = (helper.lib.relativeToRootFiles "modules/linux/options" [ "networkd.nix" "wireless.nix" ]);
+  imports = (
+    helper.lib.relativeToRootFiles "modules/linux/options" [
+      "networkd.nix"
+      "wireless.nix"
+      "network-boot-options.nix"
+    ]
+  );
   networking.hostName = "R9000K";
   systemd.network.networks.eno1 = {
     matchConfig.Name = "eno1";
