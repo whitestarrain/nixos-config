@@ -1,6 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+
   boot.loader.grub = {
     # UEFI boot, need to set device to "nodev"
     device = "nodev";
