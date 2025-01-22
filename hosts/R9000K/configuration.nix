@@ -6,6 +6,8 @@
     ++ (helper.lib.scanNixRelativeRootPath "modules/common")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")
+    ++ (helper.lib.relativeToRootFiles "modules/linux/options" [ "tlp.nix" ])
+    ++ [ { services.tlp.settings.RUNTIME_PM_DENYLIST = "03:00.0 04:00.0"; } ]
     ++ [ ./users.nix ]
   );
 
