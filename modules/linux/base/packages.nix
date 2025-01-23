@@ -26,6 +26,7 @@
     iftop # network monitoring
     tcpdump
     sysstat
+    gpustat # gpu usage
     # system call monitoring
     strace # system call monitoring
     ltrace # library call monitoring

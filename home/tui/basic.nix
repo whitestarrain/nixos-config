@@ -39,6 +39,7 @@
     bc
     cloc
     scc # replace cloc
+    clash-meta
   ]);
 
   programs.git = {
