@@ -26,11 +26,11 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = true;
+    powerManagement.enable = false;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = true;
+    powerManagement.finegrained = false;
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
@@ -49,31 +49,26 @@
   };
 
   hardware.nvidia.prime = {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
+    sync.enable = true;
 
     # neet to enable hybird mode in bios to detect integrated graphics !!!!!!
     amdgpuBusId = "PCI:06:0:0";
     nvidiaBusId = "PCI:01:0:0";
   };
 
+  # boot.kernelParams = [ "video=DP-2:2560x1440@144" ];
+  # boot.initrd.kernelModules = [ "amdgpu" ];
+
   specialisation = {
-    nvidia-sync-mode.configuration = {
-      boot.kernelParams = [
-        "video=DP-2:2560x1440@144"
-        "video=eDP-1:d"
-      ];
-      boot.initrd.kernelModules = [ "amdgpu" ];
+    nvidia-offload-mode.configuration = {
       system.nixos.tags = [ "nvidia-sync-mode" ];
       hardware.nvidia = {
-        powerManagement.enable = lib.mkForce false;
-        powerManagement.finegrained = lib.mkForce false;
+        powerManagement.enable = lib.mkForce true;
+        powerManagement.finegrained = lib.mkForce true;
 
-        prime.sync.enable = lib.mkForce true;
-        prime.offload.enable = lib.mkForce false;
-        prime.offload.enableOffloadCmd = lib.mkForce false;
+        prime.sync.enable = lib.mkForce false;
+        prime.offload.enable = lib.mkForce true;
+        prime.offload.enableOffloadCmd = lib.mkForce true;
       };
     };
   };
