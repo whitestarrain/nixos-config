@@ -34,6 +34,13 @@ rebuild:
   # rebuild to generate current generation
   sudo nixos-rebuild switch
 
+# rebuild system
+[linux]
+[group('nix')]
+rebuild-cn:
+  # rebuild to generate current generation
+  sudo nixos-rebuild switch --option substituters https://mirrors.ustc.edu.cn/nix-channels/store
+
 # rebuild system and clear all old generation
 [linux]
 [group('nix')]
