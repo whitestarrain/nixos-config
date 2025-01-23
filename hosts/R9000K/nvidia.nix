@@ -61,6 +61,11 @@
 
   specialisation = {
     nvidia-sync-mode.configuration = {
+      boot.kernelParams = [
+        "video=DP-2:2560x1440@144"
+        "video=eDP-1:d"
+      ];
+      boot.initrd.kernelModules = [ "amdgpu" ];
       system.nixos.tags = [ "nvidia-sync-mode" ];
       hardware.nvidia = {
         powerManagement.enable = lib.mkForce false;
