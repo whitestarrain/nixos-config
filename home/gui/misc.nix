@@ -4,6 +4,6 @@
   home.packages = (with pkgs;[
     mupdf
     flameshot
-    clash-meta
+    netease-cloud-music-gtk
   ]);
 }
