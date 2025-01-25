@@ -65,9 +65,9 @@
     EXT=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep -v "eDP" | ${pkgs.gnugrep}/bin/grep "DP" | ${pkgs.gnugrep}/bin/grep " connected" | ${pkgs.gnused}/bin/sed -e "s/\([A-Z1-9]\+\) connected.*/\1/")
 
     if (${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "$EXT disconnected"); then
-        ${pkgs.xorg.xrandr}/bin/xrandr  --output $EXT --off --output $IN --rate 166 --mode 2560x1600
+      ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --rate 165.02 --mode 2560x1600
     else
-        ${pkgs.xorg.xrandr}/bin/xrandr  --output $IN --off --output $EXT --rate 144 --mode 2560x1440 --scale 1.2x1.2
+      ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --off --output $EXT --rate 144 --mode 2560x1440 --scale 1.2x1.2
     fi
   '';
 
