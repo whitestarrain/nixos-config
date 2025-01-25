@@ -43,6 +43,8 @@
       STOP_CHARGE_THRESH_BAT0 = 55;
 
       TLP_DEFAULT_MODE = "AC";
+
+      RESTORE_DEVICE_STATE_ON_STARTUP = 1;
     };
   };
 }
