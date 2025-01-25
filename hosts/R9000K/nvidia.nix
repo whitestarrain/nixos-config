@@ -81,7 +81,7 @@
 
   specialisation = {
     nvidia-offload-mode.configuration = {
-      system.nixos.tags = [ "nvidia-sync-mode" ];
+      system.nixos.tags = [ "nvidia-offload-mode" ];
       hardware.nvidia = {
         powerManagement.enable = lib.mkForce true;
         powerManagement.finegrained = lib.mkForce true;
