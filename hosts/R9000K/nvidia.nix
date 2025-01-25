@@ -66,6 +66,9 @@
 
     if (${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "$EXT disconnected"); then
       ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --rate 165.02 --mode 2560x1600
+      # driver amdgpu doesn't support PRIME Synchronization
+      # archlinux wiki: https://wiki.archlinux.org/title/PRIME#PRIME_synchronization
+      # ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --set "PRIME Synchronization" 1 # run this command after login to avoid cursor hide when move
     else
       ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --off --output $EXT --rate 144 --mode 2560x1440 --scale 1.2x1.2
     fi
