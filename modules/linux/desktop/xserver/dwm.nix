@@ -1,4 +1,4 @@
-{ pkgs, helper, lib, ... }:
+{ pkgs, config, helper, lib, ... }:
 
 let
   dwmblocks = (pkgs.dwmblocks.overrideAttrs {
