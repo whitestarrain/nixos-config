@@ -44,6 +44,7 @@
 
       TLP_DEFAULT_MODE = "AC";
 
+      # unblock services: sudo rfkill unblock all
       RESTORE_DEVICE_STATE_ON_STARTUP = 1;
     };
   };
