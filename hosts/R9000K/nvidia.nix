@@ -48,6 +48,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  # Optimus://wiki.archlinux.org/title/NVIDIA_Optimus
+  # prime: https://wiki.archlinux.org/title/PRIME
   hardware.nvidia.prime = {
     sync.enable = true;
 
@@ -59,18 +61,24 @@
   # TODO:
   # disable ForceCompositionPipeline, ForceFullCompositionPipeline declaratively
   # (nvidia-setting -> X Server Display Configuration -> Advance)
-
   services.xserver.displayManager.setupCommands = lib.mkAfter ''
-    IN=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "eDP" | ${pkgs.gnugrep}/bin/grep " connected" | ${pkgs.gnused}/bin/sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
-    EXT=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep -v "eDP" | ${pkgs.gnugrep}/bin/grep "DP" | ${pkgs.gnugrep}/bin/grep " connected" | ${pkgs.gnused}/bin/sed -e "s/\([A-Z1-9]\+\) connected.*/\1/")
-
-    if (${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "$EXT disconnected"); then
-      ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --rate 165.02 --mode 2560x1600
-      # driver amdgpu doesn't support PRIME Synchronization
-      # archlinux wiki: https://wiki.archlinux.org/title/PRIME#PRIME_synchronization
-      # ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --set "PRIME Synchronization" 1 # run this command after login to avoid cursor hide when move
+    IN_eDP=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "eDP" | ${pkgs.gnugrep}/bin/grep " connected" | ${pkgs.gnused}/bin/sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
+    ALL_DP=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep -v "eDP" | ${pkgs.gnugrep}/bin/grep "DP" | ${pkgs.gnugrep}/bin/grep " connected" | ${pkgs.gnused}/bin/sed -e "s/\([A-Z1-9]\+\) connected.*/\1/")
+    DP_NUM=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep -v "eDP" | ${pkgs.gnugrep}/bin/grep "DP" | ${pkgs.gnugrep}/bin/grep " connected" | wc -l)
+    if [[ -z "$IN_eDP" ]]; then
+      if [[ $DP_NUM -lt 2 ]]; then
+        ${pkgs.xorg.xrandr}/bin/xrandr --output $ALL_DP --rate 165.02 --mode 2560x1600
+      else
+        # todo
+        echo ""
+      fi
     else
-      ${pkgs.xorg.xrandr}/bin/xrandr --output $IN --off --output $EXT --rate 144 --mode 2560x1440 --scale 1.2x1.2
+      # igpu and dgpu (Optimus mode)
+      if (${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "$ALL_DP disconnected"); then
+        ${pkgs.xorg.xrandr}/bin/xrandr --output $IN_eDP --rate 165.02 --mode 2560x1600
+      else
+        ${pkgs.xorg.xrandr}/bin/xrandr --output $IN_eDP --off --output $ALL_DP --rate 144 --mode 2560x1440 --scale 1.2x1.2
+      fi
     fi
   '';
 
