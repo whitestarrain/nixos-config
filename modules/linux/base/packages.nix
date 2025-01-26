@@ -19,6 +19,7 @@
     which
     tree
     ripgrep
+    killall
 
     # monitor
     btop # bashtop, replacement of htop/nmon
