@@ -28,6 +28,7 @@
     tcpdump
     sysstat
     smartmontools
+    upower
     # system call monitoring
     strace # system call monitoring
     ltrace # library call monitoring
