@@ -7,7 +7,8 @@
     xclip
   ];
 
-  services.xserver.enable = true;
-
-  services.xserver.desktopManager.runXdgAutostartIfNone = true;
+  services.xserver = {
+    enable = true;
+    desktopManager.runXdgAutostartIfNone = true;
+  };
 }

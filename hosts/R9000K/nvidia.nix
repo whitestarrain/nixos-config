@@ -58,9 +58,6 @@
     nvidiaBusId = "PCI:01:0:0";
   };
 
-  # TODO:
-  # disable ForceCompositionPipeline, ForceFullCompositionPipeline declaratively
-  # (nvidia-setting -> X Server Display Configuration -> Advance)
   services.xserver.displayManager.setupCommands = lib.mkAfter ''
     IN_eDP=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "eDP" | ${pkgs.gnugrep}/bin/grep " connected" | ${pkgs.gnused}/bin/sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
     ALL_DP=$(${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep -v "eDP" | ${pkgs.gnugrep}/bin/grep "DP" | ${pkgs.gnugrep}/bin/grep " connected" | ${pkgs.gnused}/bin/sed -e "s/\([A-Z1-9]\+\) connected.*/\1/")
