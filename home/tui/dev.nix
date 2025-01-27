@@ -79,6 +79,12 @@
     goPath = ".local/share/go";
   };
 
+  programs.bash.initExtra = ''
+      nix-dev() {
+        nix develop $* -c nix shell nixpkgs#bashInteractive -c bash
+      }
+  '';
+
   xdg.configFile."pip/pip.conf".text = ''
     [global]
     index-url = https://mirrors.aliyun.com/pypi/simple
