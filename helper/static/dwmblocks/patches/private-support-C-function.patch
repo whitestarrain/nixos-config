@@ -63,3 +63,16 @@ index c8f77b7..0052ccc 100644
  }
 
  void getcmds(int time)
+diff --git a/helper/static/dwmblocks/Makefile b/helper/static/dwmblocks/Makefile
+index 75109ac..d13daa8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -16,7 +16,7 @@ options:
+        @echo "LDFLAGS = ${LDFLAGS}"
+        @echo "CC      = ${CC}"
+
+-dwmblocks: dwmblocks.c blocks.def.h blocks.h
++dwmblocks: dwmblocks.c blocks.def.h blocks.h toolkits.h
+        ${CC} -o dwmblocks dwmblocks.c ${CFLAGS} ${LDFLAGS}
+
+ blocks.h:

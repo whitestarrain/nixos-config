@@ -59,7 +59,7 @@ void get_cpu_usage(char *buf, int buf_size) {
 	}
 	avg = avg / (core_id + 1);
 
-	snprintf(buf, buf_size, "%-5.1f %-4.1f", max, avg);
+	snprintf(buf, buf_size, "(%-4.1f|%4.1f)", max, avg);
 }
 
 
