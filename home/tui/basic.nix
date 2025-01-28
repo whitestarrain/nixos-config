@@ -95,4 +95,12 @@
   programs.bash = {
     initExtra = (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/ranger.sh");
   };
+
+  programs.translate-shell = {
+    enable = true;
+    settings = {
+      tl = [ "zh" ];
+      proxy = "127.0.0.1:7890";
+    };
+  };
 }
