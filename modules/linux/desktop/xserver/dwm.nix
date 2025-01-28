@@ -1,29 +1,57 @@
-{ pkgs, config, helper, lib, ... }:
+{
+  pkgs,
+  config,
+  helper,
+  lib,
+  ...
+}:
 
 let
-  dwmblocks = (pkgs.dwmblocks.overrideAttrs {
-    src = helper.static.dwmblocks;
-  });
+  dwmblocks = (
+    pkgs.dwmblocks.overrideAttrs {
+      src = helper.static.dwmblocks;
+    }
+  );
+  dmenu = (
+    pkgs.dmenu.overrideAttrs (
+      finalAttrs: previousAttrs: {
+        src = helper.static.dmenu;
+        preConfigure = ''
+          makeFlagsArray+=(
+            PREFIX="$out"
+            CC="$CC"
+            # default config.mk hardcodes dependent libraries and include paths
+            INCS="`$PKG_CONFIG --cflags fontconfig x11 xft xinerama`"
+            LIBS="`$PKG_CONFIG --libs   fontconfig x11 xft xinerama` -lm"
+          )
+        '';
+      }
+    )
+  );
+  st = (
+    pkgs.st.overrideAttrs {
+      src = helper.static.st;
+    }
+  );
+  st-float = (
+    pkgs.writeShellApplication {
+      name = "st-float";
+      runtimeInputs = with pkgs; [
+        st
+      ];
+      text = ''
+        ${st}/bin/st -c st-float -e "$@"
+      '';
+    }
+  );
 in
 {
-  environment.systemPackages = with pkgs; [
-    alacritty
-    rxvt-unicode
-    (dmenu.overrideAttrs (finalAttrs: previousAttrs: {
-      src = helper.static.dmenu;
-      preConfigure = ''
-        makeFlagsArray+=(
-          PREFIX="$out"
-          CC="$CC"
-          # default config.mk hardcodes dependent libraries and include paths
-          INCS="`$PKG_CONFIG --cflags fontconfig x11 xft xinerama`"
-          LIBS="`$PKG_CONFIG --libs   fontconfig x11 xft xinerama` -lm"
-        )
-      '';
-    }))
-    (st.overrideAttrs {
-      src = helper.static.st;
-    })
+  environment.systemPackages = [
+    pkgs.alacritty
+    pkgs.rxvt-unicode
+    dmenu
+    st
+    st-float
     dwmblocks
   ];
 
@@ -36,17 +64,15 @@ in
       };
     };
     # run dwmblock in session config
-    session = lib.singleton
-      {
-        name = "dwm";
-        start =
-          ''
-            export _JAVA_AWT_WM_NONREPARENTING=1
-            ${dwmblocks}/bin/dwmblocks &
-            dwm &
-            # waitpid must be the dwm's pid
-            waitPID=$!
-          '';
-      };
+    session = lib.singleton {
+      name = "dwm";
+      start = ''
+        export _JAVA_AWT_WM_NONREPARENTING=1
+        ${dwmblocks}/bin/dwmblocks &
+        dwm &
+        # waitpid must be the dwm's pid
+        waitPID=$!
+      '';
+    };
   };
 }
