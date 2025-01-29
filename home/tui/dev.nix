@@ -63,6 +63,9 @@
     # Rust
     rustup
 
+    # ruby
+    ruby
+
     # nix related
     nix-output-monitor # it provides the command `nom` works just like `nix` with more details log output
     nix-index # A small utility to index nix store paths
