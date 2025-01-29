@@ -19,7 +19,7 @@ in
     ];
 
     # substituers that will be considered before the official ones(https://cache.nixos.org)
-    substituters = lib.mkForce [
+    substituters = [
       # cache mirror located in China
       # status: https://mirrors.ustc.edu.cn/status/
       "https://mirrors.ustc.edu.cn/nix-channels/store"

@@ -15,6 +15,9 @@
       url = "github:nixos/flake-registry";
       flake = false;
     };
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+    };
     dotfiles = {
       url = "github:whitestarrain/dotfiles";
       flake = false;
