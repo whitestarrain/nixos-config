@@ -13,7 +13,8 @@
     binutils
     bison
     clang-analyzer
-    clang-tools
+    clang-tools # format, lsp
+    lldb # debug
     cmake
     cppcheck
     fakeroot
@@ -71,6 +72,11 @@
     nix-diff # Explain why two Nix derivations differ
     hydra-check # check hydra(nix's build farm) for the build status of a package
     nixfmt-rfc-style
+    nixpkgs-fmt
+
+    # misc
+    protobuf
+    subversion # version control
   ]);
 
   programs.go = {
