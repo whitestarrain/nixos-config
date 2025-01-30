@@ -30,6 +30,7 @@
     trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
   };
 
+  # Full-screen may cause the game to black the screen when switching tag in dwm
   programs.steam = {
     enable = true;
     protontricks.enable = true;
