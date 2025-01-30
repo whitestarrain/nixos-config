@@ -7,16 +7,26 @@
     pavucontrol
     playerctl
     pulsemixer
-    sxiv # image viewer
 
     # video/audio tools
-    cava # for visualizing audio
     libva-utils
     vdpauinfo
     vulkan-tools
     glxinfo
+    cava # for visualizing audio
 
+    # audio
+    audacious
+
+    # image
+    geeqie
+    sxiv
+    imv
     w3m
+
+    # video
+    vlc
+    ffmpeg-full
   ];
 
   # https://github.com/catppuccin/cava

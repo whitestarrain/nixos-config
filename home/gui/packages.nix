@@ -5,6 +5,5 @@
     mupdf
     flameshot
     netease-cloud-music-gtk
-    ffmpeg-full
   ]);
 }
