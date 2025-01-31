@@ -5,5 +5,6 @@
     mupdf
     flameshot
     netease-cloud-music-gtk
+    telegram-desktop
   ]);
 }
