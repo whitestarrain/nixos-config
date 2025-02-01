@@ -11,6 +11,9 @@
     # need install dxvk to make sure wine can use the GPU
     pkgs.winetricks
     flake-inputs.nix-gaming.packages."${pkgs.system}".wine-ge
+
+    # minecraft
+    pkgs.hmcl # adjust the font if can't display number
   ];
 
   services.pipewire = {
