@@ -22,20 +22,24 @@
       url = "github:whitestarrain/dotfiles";
       flake = false;
     };
+    nur = {
+      url = "github:nix-community/NUR";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, dotfiles, ... }@flake-inputs:
+  outputs = { self, nixpkgs, home-manager, nixpkgs-unstable, nur, dotfiles, ... }@flake-inputs:
     let
       genSpeicalArgs = system: {
+        inherit flake-inputs;
         helper = import ./helper {
           inherit (nixpkgs) lib;
           pkgs = nixpkgs.legacyPackages.${system};
         };
-        inherit flake-inputs;
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
         };
+        pkgs-nur = nur.legacyPackages.${system}.repos;
       };
     in
     {
