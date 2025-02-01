@@ -1,7 +1,30 @@
-{ pkgs
-, helper
-, ...
-}: {
+{ pkgs, helper, pkgs-nur, ... }:
+
+let
+  rime-custom = pkgs.callPackage ./rime-custom { };
+  fcitx5-rime-custom = (pkgs.fcitx5-rime.override {
+    rimeDataPkgs = [
+      pkgs.rime-data
+      rime-custom
+      pkgs-nur.xddxdd.rime-ice
+      pkgs-nur.xddxdd.rime-moegirl
+      pkgs-nur.xddxdd.rime-zhwiki
+    ];
+  }).overrideAttrs
+    (old: {
+      # Prebuild schema data
+      nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.parallel ];
+      postInstall =
+        (old.postInstall or "")
+        + ''
+          for F in $out/share/rime-data/*.schema.yaml; do
+            echo "rime_deployer --compile "$F" $out/share/rime-data $out/share/rime-data $out/share/rime-data/build" >> parallel.lst
+          done
+          parallel -j$(nproc) < parallel.lst || true
+        '';
+    });
+in
+{
   home.file.".local/share/fcitx5/themes".source = ./themes;
 
   xdg.configFile = {
@@ -19,8 +42,12 @@
       source = ./classicui.conf;
       force = true;
     };
-    "fcitx5/conf/rime.conf" = {
-      source = ./rime.conf;
+  };
+
+  # .custom files(cmake parameter: RIME_DATA_DIR, default /usr/local/share) placed in the global configuration may not be effective
+  xdg.dataFile = {
+    "fcitx5/rime/default.custom.yaml" = {
+      source = ./rime-custom/default.custom.yaml;
       force = true;
     };
   };
@@ -28,13 +55,14 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
-      # for flypy chinese input method
-      fcitx5-rime
-      # needed enable rime using configtool after installed
+      fcitx5-gtk # gtk support
+      fcitx5-rime-custom # rime support
+
+      # lang support
+      fcitx5-chinese-addons # pinyin
+      fcitx5-mozc # japanese
+
       fcitx5-configtool
-      fcitx5-chinese-addons
-      # fcitx5-mozc    # japanese input method
-      fcitx5-gtk # gtk im module
     ];
   };
 }

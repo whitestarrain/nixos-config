@@ -1,0 +1,4 @@
+patch:
+  "switches/@0/reset": 1
+  "translator/dictionary": "custom_rime_ice_dict"
+

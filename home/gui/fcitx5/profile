@@ -4,17 +4,17 @@ Name=Other
 # Layout
 Default Layout=us
 # Default Input Method
-DefaultIM=pinyin
+DefaultIM=mozc
 
 [Groups/0/Items/0]
 # Name
-Name=keyboard-us
+Name=rime
 # Layout
 Layout=
 
 [Groups/0/Items/1]
 # Name
-Name=pinyin
+Name=mozc
 # Layout
 Layout=
 
