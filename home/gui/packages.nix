@@ -6,5 +6,8 @@
     flameshot
     netease-cloud-music-gtk
     telegram-desktop
+    aria2
+    ariang
+    uftpd
   ]);
 }
