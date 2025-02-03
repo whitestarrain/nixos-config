@@ -17,9 +17,6 @@
     unzip
     p7zip
     gnutar
-    # terminal file manager
-    ranger
-    ueberzugpp # used to preview image in terminal
     # quick cd
     zoxide
     # search, find
@@ -67,33 +64,6 @@
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
-  };
-
-  # ranger
-  programs.ranger = {
-    enable = true;
-    extraConfig = ''
-      # icon
-      default_linemode devicons
-      set preview_images true
-      set preview_images_method ueberzug
-    '';
-    settings = {
-      show_hidden = "true";
-    };
-    mappings = {
-      a = "console touch%space";
-      r = "rename_append";
-    };
-    plugins = [
-      {
-        name = "ranger_devicons";
-        src = helper.static.ranger_devicons;
-      }
-    ];
-  };
-  programs.bash = {
-    initExtra = (builtins.readFile "${flake-inputs.dotfiles}/bash/.bashrc.d/ranger.sh");
   };
 
   programs.translate-shell = {
