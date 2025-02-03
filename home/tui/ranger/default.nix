@@ -32,7 +32,7 @@
   };
 
   xdg.configFile."ranger/rifle.conf" = {
-    source = ./rifile.conf;
+    source = ./rifle.conf;
     force = true;
   };
 
