@@ -69,8 +69,8 @@
       if [[ $DP_NUM -lt 2 ]]; then
         ${pkgs.xorg.xrandr}/bin/xrandr --output $ALL_DP --rate 165.02 --mode 2560x1600
       else
-        # todo
-        echo ""
+        # temporary hard coding
+        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --off --output DP-2 --rate 165 --mode 2560x1440 --scale 1.2x1.2
       fi
     else
       # igpu and dgpu (Optimus mode)
