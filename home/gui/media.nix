@@ -38,7 +38,19 @@
     mpv = {
       enable = true;
       defaultProfiles = [ "gpu-hq" ];
-      scripts = [ pkgs.mpvScripts.mpris ];
+      bindings = {
+        n = "playlist-next";
+        p = "playlist-prev";
+        k = "script-message playlistmanager show playlist toggle";
+        j = "seek -5";
+        l = "seek 5";
+      };
+      scripts = [
+        pkgs.mpvScripts.mpris
+        pkgs.mpvScripts.uosc
+        pkgs.mpvScripts.thumbfast
+        pkgs.mpvScripts.mpv-playlistmanager
+      ];
     };
   };
 
