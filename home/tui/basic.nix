@@ -42,6 +42,11 @@
     enable = true;
     userName = user;
     userEmail = helper.constants.githubEmail;
+    extraConfig = {
+      safe = {
+        directory = "/mnt/*";
+      };
+    };
   };
 
   # starship
