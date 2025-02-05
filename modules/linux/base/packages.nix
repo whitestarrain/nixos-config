@@ -19,7 +19,6 @@
     which
     tree
     ripgrep
-    killall
 
     # monitor
     btop # bashtop, replacement of htop/nmon
@@ -29,12 +28,15 @@
     sysstat
     smartmontools
     upower
+    lm_sensors # for `sensors` command
+
     # system call monitoring
     strace # system call monitoring
     ltrace # library call monitoring
     lsof # list open files
+
     # system tools
-    lm_sensors # for `sensors` command
+    psmisc # killall/pstree/prtstat/fuser/...
     ethtool
     pciutils # lspci
     usbutils # lsusb
