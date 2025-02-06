@@ -2,7 +2,7 @@
 
 {
   imports = (
-    helper.lib.relativeToRootFiles "modules/linux/options" [
+    helper.lib.relativeToRootFiles "modules/linux/options/networking" [
       "networkd.nix"
       "wireless.nix"
       "network-boot-options.nix"
