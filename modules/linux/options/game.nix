@@ -1,6 +1,10 @@
 { pkgs, config, flake-inputs, ... }:
 
 {
+  environment.sessionVariables = {
+    STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
+  };
+
   imports = [
     flake-inputs.nix-gaming.nixosModules.pipewireLowLatency
     flake-inputs.nix-gaming.nixosModules.platformOptimizations
