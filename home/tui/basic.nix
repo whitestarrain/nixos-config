@@ -47,6 +47,12 @@
         directory = "/mnt/*";
       };
     };
+    aliases = {
+      A = "add -A";
+      st = "status";
+      tree = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+      acm = "commit -a --amend --no-edit";
+    };
   };
 
   # starship
