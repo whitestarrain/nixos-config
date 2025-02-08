@@ -44,7 +44,7 @@
     userEmail = helper.constants.githubEmail;
     extraConfig = {
       safe = {
-        directory = "/mnt/*";
+        directory = [ "/mnt/*" "/media/*" ];
       };
     };
     aliases = {

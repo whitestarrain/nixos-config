@@ -37,6 +37,14 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
+  # win10 D disk
+  fileSystems."/media/win_d" =
+    {
+      device = "/dev/disk/by-uuid/8EA8A6B0A8A695ED";
+      fsType = "lowntfs-3g";
+      options = [ "rw" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/dc124452-ccaf-4baf-8361-954cf4c35bba"; }
     ];
