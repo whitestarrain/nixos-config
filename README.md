@@ -1,6 +1,6 @@
 # About
 
-![](./images/2025-01-21_01-49.png)
+![](./images/2025-02-09_18-23.png)
 
 wsain's nixos config
 
