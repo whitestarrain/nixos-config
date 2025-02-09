@@ -45,6 +45,10 @@
     hdparm
     dmidecode
 
+    # wireless
+    wirelesstools
+    iw
+
     # usb
     udisks
     eject
