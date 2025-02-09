@@ -9,7 +9,7 @@ static const Block blocks[] = {
 	{"   ", NULL,	 get_cpu_usage, 1,		0},
 	{"   ", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	 NULL, 2,		0},
 	{"  󰂄 ", "if [ -f /sys/class/power_supply/*/capacity ]; then cat /sys/class/power_supply/*/capacity; else echo '--'; fi",	 NULL, 5,		0},
-	{"  󰅐 ", "date '+%b %d (%a) %I:%M%p'",			NULL, 30,		0},
+	{"  ", "date '+󰃭 %b %d (%a) 󰅐 %I:%M%p'",			NULL, 30,		0},
 	{"", "echo ' '",			NULL, 0,		0},
 };
 
