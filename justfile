@@ -1,5 +1,6 @@
 set shell := ["bash", "-ce"]
 proxy := "http://127.0.0.1:7890"
+sudo_E := "sudo --preserve-env=NIX_REMOTE,http_proxy,https_proxy,all_proxy"
 
 default:
   @just --list
@@ -33,26 +34,26 @@ force_gc:
   # run the gc command as current user because the issue: https://github.com/NixOS/nix/issues/8508
   nix-collect-garbage --delete-old
   # rebuild to clear boot entries in /boot/loader
-  sudo nixos-rebuild switch
+  {{sudo_E}} nixos-rebuild switch
 
 # rebuild system
 [linux]
 [group('nix')]
 rebuild:
   # rebuild to generate current generation
-  sudo nixos-rebuild switch
+  {{sudo_E}} nixos-rebuild switch
 
 # rebuild system through china's mirror
 [linux]
 [group('nix')]
 rebuild-cn:
   # rebuild to generate current generation
-  sudo nixos-rebuild switch --option substituters https://mirrors.ustc.edu.cn/nix-channels/store
+  {{sudo_E}} nixos-rebuild switch --option substituters https://mirrors.ustc.edu.cn/nix-channels/store
 
-# rebuild system through proxy
+# add nix-daemon proxy env
 [linux]
 [group('nix')]
-rebuild-proxy:
+set-proxy:
   #!/usr/bin/env bash
   # add proxy config
   sudo mkdir -p /run/systemd/system/nix-daemon.service.d/
@@ -64,8 +65,11 @@ rebuild-proxy:
   EOF'
   sudo systemctl daemon-reload
   sudo systemctl restart nix-daemon
-  # rebuild
-  sudo nixos-rebuild switch
+
+# clear nix-daemon proxy env
+[linux]
+[group('nix')]
+clear-proxy:
   # clear proxy config
   sudo rm /run/systemd/system/nix-daemon.service.d/override.conf
   sudo systemctl daemon-reload
@@ -76,7 +80,7 @@ rebuild-proxy:
 [group('nix')]
 force_refresh_build:
   # rebuild to generate current generation
-  sudo nixos-rebuild switch
+  {{sudo_E}} nixos-rebuild switch
   # clear old profiles
   sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old
   # gc
@@ -84,7 +88,7 @@ force_refresh_build:
   # run the gc command as current user because the issue: https://github.com/NixOS/nix/issues/8508
   nix-collect-garbage --delete-old
   # rebuild to clear boot entries in /boot/loader
-  sudo nixos-rebuild switch
+  {{sudo_E}} nixos-rebuild switch
 
 # list system generations
 [linux]

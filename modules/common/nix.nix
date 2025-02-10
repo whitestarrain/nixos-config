@@ -7,6 +7,11 @@ let
   };
 in
 {
+  # https://lantian.pub/article/modify-computer/nixos-impermanence.lantian/
+  environment.variables = {
+    NIX_REMOTE = "daemon";
+  };
+
   # to install nvidia driver, need to enable unfree packages
   nixpkgs.config.allowUnfree = lib.mkForce true;
 

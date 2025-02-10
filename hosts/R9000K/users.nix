@@ -21,6 +21,7 @@
   home-manager.users.wsain = rec {
     imports = (helper.lib.scanNixRelativeRootPath "home/tui")
       ++ (helper.lib.scanNixRelativeRootPath "home/gui")
+      ++ (helper.lib.relativeToRootFiles "home" ["packages.nix"])
       ++ [{ _module.args = { user = "wsain"; }; }];
     home.username = "wsain";
     home.homeDirectory = "/home/wsain";

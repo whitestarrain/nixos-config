@@ -19,6 +19,8 @@
     which
     tree
     ripgrep
+    gzip
+    bzip2
 
     # monitor
     btop # bashtop, replacement of htop/nmon

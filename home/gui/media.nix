@@ -19,6 +19,7 @@
     audacious
 
     # image
+    flameshot # screenshot
     geeqie
     sxiv
     imv
