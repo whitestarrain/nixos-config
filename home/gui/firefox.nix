@@ -56,6 +56,8 @@
         "general.smoothScroll.msdPhysics.enabled" = true;
         # zoom
         "apz.doubletapzoom.defaultzoomin" = 1.2;
+        # disable ocsp_must_staple
+        # "security.ssl.enable_ocsp_must_staple" = false;
       };
     };
   };
