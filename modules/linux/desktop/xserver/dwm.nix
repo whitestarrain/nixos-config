@@ -1,12 +1,14 @@
-{
-  pkgs,
-  config,
-  helper,
-  lib,
-  ...
+{ pkgs
+, config
+, helper
+, lib
+, ...
 }:
 
 let
+  dwm = pkgs.dwm.overrideAttrs {
+        src = helper.static.dwm;
+      };
   dwmblocks = (
     pkgs.dwmblocks.overrideAttrs {
       src = helper.static.dwmblocks;
@@ -33,6 +35,15 @@ let
       src = helper.static.st;
     }
   );
+  st-desktop-item = pkgs.makeDesktopItem {
+    name = "st";
+    desktopName = "st";
+    exec = "st";
+    terminal = false;
+    type = "Application";
+    categories=["System" "TerminalEmulator"];
+    comment = "st";
+  };
   st-float = (
     pkgs.writeShellApplication {
       name = "st-float";
@@ -51,6 +62,7 @@ in
     pkgs.rxvt-unicode
     dmenu
     st
+    st-desktop-item
     st-float
     dwmblocks
   ];
@@ -59,9 +71,7 @@ in
   services.xserver.windowManager = {
     dwm = {
       enable = true;
-      package = pkgs.dwm.overrideAttrs {
-        src = helper.static.dwm;
-      };
+      package = dwm;
     };
     # run dwmblock in session config
     session = lib.singleton {
@@ -75,4 +85,10 @@ in
       '';
     };
   };
-}
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "st.desktop" "xterm.desktop" ];};
+    };
+  }
