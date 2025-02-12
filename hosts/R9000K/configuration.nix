@@ -7,11 +7,16 @@
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")
     ++ (helper.lib.relativeToRootFiles "modules/linux/options" [
-      "tlp.nix" "logind.nix" "game.nix" "bluetooth.nix" "clash-verge.nix"
+      "bluetooth.nix"
+      "clash-verge.nix"
+      "game.nix"
+      "ignore-lid-close.nix"
+      "tlp.nix"
     ])
-    ++ [ { services.tlp.settings.RUNTIME_PM_DENYLIST = "03:00.0 04:00.0"; } ]
     ++ [ ./users.nix ]
   );
+
+  services.tlp.settings.RUNTIME_PM_DENYLIST = "03:00.0 04:00.0";
 
   # The first version of NixOS installed on the machine.
   # And is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
