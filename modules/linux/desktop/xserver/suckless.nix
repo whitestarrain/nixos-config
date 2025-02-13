@@ -7,8 +7,8 @@
 
 let
   dwm = pkgs.dwm.overrideAttrs {
-        src = helper.static.dwm;
-      };
+    src = helper.static.dwm;
+  };
   dwmblocks = (
     pkgs.dwmblocks.overrideAttrs {
       src = helper.static.dwmblocks;
@@ -41,7 +41,7 @@ let
     exec = "st";
     terminal = false;
     type = "Application";
-    categories=["System" "TerminalEmulator"];
+    categories = [ "System" "TerminalEmulator" ];
     comment = "st";
   };
   st-float = (
@@ -89,6 +89,7 @@ in
   xdg.terminal-exec = {
     enable = true;
     settings = {
-      default = [ "st.desktop" "xterm.desktop" ];};
+      default = [ "st.desktop" "xterm.desktop" ];
     };
-  }
+  };
+}
