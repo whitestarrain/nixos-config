@@ -7,6 +7,7 @@
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")
     ++ (helper.lib.relativeToRootFiles "modules/linux/options" [
+      "bash-drop-dup.nix"
       "bluetooth.nix"
       "clash-verge.nix"
       "game.nix"
