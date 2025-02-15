@@ -1,5 +1,16 @@
 { pkgs, config, flake-inputs, ... }:
 
+let
+  steam-run-appid = pkgs.writeShellApplication {
+    name = "steam-run-appid";
+    text = ''
+      if [ $# -lt 1 ]; then
+        return
+      fi
+      steam steam://rungameid/"$*"
+    '';
+  };
+in
 {
   environment.sessionVariables = {
     STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
@@ -11,6 +22,8 @@
   ];
 
   environment.systemPackages = [
+    steam-run-appid
+
     pkgs.lutris
     # need install dxvk to make sure wine can use the GPU
     pkgs.winetricks
