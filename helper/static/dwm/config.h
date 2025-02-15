@@ -15,12 +15,12 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 5;       /* vertical padding of bar */
 static const int sidepad            = 15;       /* horizontal padding of bar */
 static const char *fonts[] = {
-	"DejaVuSansM Nerd Font:size=14",
-	"Noto Sans CJK SC:size=14",
-	"Symbols Nerd Font Mono:size=14",
-	"Noto Emoji Color:size=14"
+	"DejaVuSansM Nerd Font:size=12",
+	"Noto Sans CJK SC:size=12",
+	"Symbols Nerd Font Mono:size=12",
+	"Noto Emoji Color:size=12"
 };
-static const char dmenufont[] = "Sauce Code Pro Nerd Font Mono:size=14";
+static const char dmenufont[] = "Sauce Code Pro Nerd Font Mono:size=12";
 static const char col_gray1[]       = "#282c34";
 static const char col_gray2[]       = "#353b45";
 static const char col_gray3[]       = "#3e4451";

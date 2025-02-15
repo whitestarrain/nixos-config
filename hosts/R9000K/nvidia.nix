@@ -70,14 +70,14 @@
         ${pkgs.xorg.xrandr}/bin/xrandr --output $ALL_DP --rate 165.02 --mode 2560x1600
       else
         # temporary hard coding
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --off --output DP-2 --rate 165 --mode 2560x1440 --scale 1.2x1.2
+        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --off --output DP-2 --rate 165 --mode 2560x1440
       fi
     else
       # igpu and dgpu (Optimus mode)
       if (${pkgs.xorg.xrandr}/bin/xrandr | ${pkgs.gnugrep}/bin/grep "$ALL_DP disconnected"); then
         ${pkgs.xorg.xrandr}/bin/xrandr --output $IN_eDP --rate 165.02 --mode 2560x1600
       else
-        ${pkgs.xorg.xrandr}/bin/xrandr --output $IN_eDP --off --output $ALL_DP --rate 144 --mode 2560x1440 --scale 1.2x1.2
+        ${pkgs.xorg.xrandr}/bin/xrandr --output $IN_eDP --off --output $ALL_DP --rate 144 --mode 2560x1440
       fi
     fi
   '';

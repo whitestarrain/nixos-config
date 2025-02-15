@@ -8,10 +8,10 @@ static int min_width = 500;                    /* minimum width when centered */
 static const float menu_height_ratio = 4.0f;  /* This is the ratio used in the original calculation */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-	"DejaVuSansM Nerd Font Mono:size=20",
-	"Noto Sans CJK SC:size=20",
-	"Symbols Nerd Font Mono:size=20",
-	"Noto Emoji Color:size=20"
+	"DejaVuSansM Nerd Font Mono:size=16",
+	"Noto Sans CJK SC:size=16",
+	"Symbols Nerd Font Mono:size=16",
+	"Noto Emoji Color:size=16"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
