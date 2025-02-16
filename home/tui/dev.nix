@@ -76,6 +76,7 @@
     hydra-check # check hydra(nix's build farm) for the build status of a package
     nixfmt-rfc-style
     nixpkgs-fmt
+    nil # nix language server
 
     # misc
     protobuf
