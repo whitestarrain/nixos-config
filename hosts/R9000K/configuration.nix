@@ -19,6 +19,15 @@
 
   services.tlp.settings.RUNTIME_PM_DENYLIST = "03:00.0 04:00.0";
 
+  # fix crackling at high volume
+  # https://forum.manjaro.org/t/howto-troubleshoot-crackling-in-pipewire/82442
+  services.pipewire.extraConfig.pipewire."92-fix-pop" = {
+    "context.properties" = {
+      "default.clock.rate" = 48000;
+      "default.clock.allowed-rates" = [44100 48000];
+    };
+  };
+
   # The first version of NixOS installed on the machine.
   # And is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   # Don't change this option !!!!
