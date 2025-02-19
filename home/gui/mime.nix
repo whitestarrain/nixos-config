@@ -3,6 +3,7 @@
 {
   xdg = {
     enable = true;
+    configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
       # let `xdg-open` to open the url with the correct application.
