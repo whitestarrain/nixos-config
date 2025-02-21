@@ -31,6 +31,10 @@ in
 
     # minecraft
     pkgs.hmcl # adjust the font if can't display number
+
+    # cheat
+    pkgs.scanmem # gameconqueror
+    # PINCE have not been packaged
   ];
 
   services.pipewire = {
