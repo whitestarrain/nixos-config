@@ -172,10 +172,11 @@ static const Key keys[] = {
 	// TAGKEYS(                        XK_8,                      7)
 	// TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape,  quit,          {0} },
-	{ MODKEY,			                  XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-") },
-	{ MODKEY|ShiftMask,							XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-") },
-	{ MODKEY,												XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+") },
-	{ MODKEY|ShiftMask,							XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+") },
+	// `kill -l` to get all signals
+	{ MODKEY,			                  XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ; kill -47 $(pidof dwmblocks)") },
+	{ MODKEY|ShiftMask,							XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; kill -47 $(pidof dwmblocks)") },
+	{ MODKEY,												XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ ; kill -47 $(pidof dwmblocks)") },
+	{ MODKEY|ShiftMask,							XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -47 $(pidof dwmblocks)") },
 };
 
 /* button definitions */

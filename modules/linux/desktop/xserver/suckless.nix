@@ -82,6 +82,8 @@ in
         dwm &
         # waitpid must be the dwm's pid
         waitPID=$!
+        # update volume after startup
+        (sleep 1 && kill -47 $(pidof dwmblocks)) &
       '';
     };
   };
