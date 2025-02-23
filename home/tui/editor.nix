@@ -9,6 +9,7 @@
   programs.bash = {
     initExtra = ''
       export EDITOR='nvim -u NONE'
+      export MANPAGER="nvim +Man!"
     '';
   };
 }
