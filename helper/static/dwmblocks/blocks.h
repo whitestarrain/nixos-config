@@ -1,11 +1,44 @@
 #include "toolkits.h"
 
+// warn: preprocessing doesn't retain line breaks
+#define STR(s) #s
+
 //Modify this file to change what commands output to your statusbar, and recompile using the make command.
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*C function*/	/*Update Interval*/	/*Update Signal*/
-	{"", "if [[ $BUTTON -eq  1 ]]; then st-float impala; fi; printf '[\\x0b󰖩 \\x0b'",         NULL,  0,		11},
-	{"", "if [[ $BUTTON -eq  1 ]]; then st-float bluetuith; fi; printf '\\x0c󰂯\\x0c]'",         NULL,  0,		12},
-	{"  ", "if [[ $BUTTON -eq  1 ]]; then st-float pulsemixer; fi; printf \"\\x0d \\x0d$(echo \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2) * 100 / 1\" | bc)\"",         NULL,  0,		13},
+
+	{
+		"",
+		STR(
+			if [[ $BUTTON -eq  1 ]]; then
+				st-float impala;
+			fi;
+			printf '[\x0b󰖩 \x0b'
+		),
+		NULL, 0, 11
+	},
+	{
+		"",
+		STR(
+			if [[ $BUTTON -eq  1 ]]; then
+				st-float bluetuith;
+			fi;
+			printf '\x0c󰂯\x0c]'
+		),
+		NULL, 0, 12
+	},
+	{
+		"  ",
+		STR(
+			if [[ $BUTTON -eq  1 ]]; then
+				st-float pulsemixer;
+			fi;
+			volume_percent="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2)";
+			volume="$(echo "$volume_percent * 100 / 1" | bc)";
+			printf "\x0d \x0d${volume}"
+		),
+		NULL, 0, 13
+	},
 	{"   ", NULL,	 get_cpu_usage, 1,		0},
 	{"   ", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	 NULL, 2,		0},
 	{"  󰂄 ", "if [ -f /sys/class/power_supply/*/capacity ]; then cat /sys/class/power_supply/*/capacity; else echo '--'; fi",	 NULL, 65,		0},
