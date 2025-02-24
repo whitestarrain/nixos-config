@@ -24,6 +24,7 @@
     sxiv
     imv
     w3m
+    imagemagick
 
     # video
     vlc

@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 
 let
-  clash-verge-pkg = pkgs.clash-verge-rev;
   switchproxy = pkgs.writeShellApplication {
     name = "switchproxy";
     text = ''
