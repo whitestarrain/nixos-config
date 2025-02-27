@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, helper, ... }:
 
 {
   home.packages = with pkgs; [
@@ -28,5 +28,11 @@
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
       };
     };
+  };
+
+  # https://github.com/NixOS/nixpkgs/blob/089d44b6892f5300bbec41c67fc1ecfee621d771/nixos/modules/services/x11/desktop-managers/default.nix#L78
+  home.file.".background-image" = {
+    source = helper.static.wallpaper;
+    force = true;
   };
 }
