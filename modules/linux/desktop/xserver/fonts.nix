@@ -45,6 +45,7 @@
       pkgs-unstable.nerd-fonts.sauce-code-pro
       pkgs-unstable.nerd-fonts.noto
       pkgs-unstable.nerd-fonts.dejavu-sans-mono
+      pkgs-unstable.nerd-fonts.terminess-ttf
     ];
 
     # user defined fonts

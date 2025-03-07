@@ -8,7 +8,7 @@
     device = "nodev";
     efiSupport = true;
     useOSProber = true;
-    # high resolutions maybe cause input delay
+    # high resolutions may cause input delay
     gfxmodeBios = "800x600";
     gfxmodeEfi = "800x600";
   };
