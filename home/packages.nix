@@ -8,6 +8,8 @@
     megatools
 
     mupdf
+    baobab # disk usage analyzer
+    rar
 
     mutt # mail client
     irssi # IRC client,
