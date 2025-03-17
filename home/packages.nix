@@ -10,6 +10,7 @@
     mupdf
     baobab # disk usage analyzer
     rar
+    kdePackages.ark # gui archive manager
 
     mutt # mail client
     irssi # IRC client,
