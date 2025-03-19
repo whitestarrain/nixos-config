@@ -4,6 +4,7 @@ let
   flakeTypeInputs = {
     nixpkgs = flake-inputs.nixpkgs.outPath;
     home-manager = flake-inputs.home-manager.outPath;
+    nixpkgs-unstable = flake-inputs.nixpkgs-unstable.outPath;
   };
 in
 {
