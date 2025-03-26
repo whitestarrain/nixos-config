@@ -99,4 +99,12 @@
     [global]
     index-url = https://mirrors.aliyun.com/pypi/simple
   '';
+
+  programs = {
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableBashIntegration = true;
+    };
+  };
 }
