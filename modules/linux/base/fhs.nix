@@ -5,6 +5,8 @@
     enable = true;
     libraries = with pkgs; [
       stdenv.cc.cc
+      openssl
+      fuse3
     ];
   };
 }
