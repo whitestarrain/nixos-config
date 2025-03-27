@@ -23,8 +23,16 @@ in
     with-proxy
   ];
 
+  home.file.".proxychains/proxychains.conf".text = ''
+    [ProxyList]
+    # socks5 127.0.0.1 7891
+    http 127.0.0.1 7890
+    # https 127.0.0.1 7890
+  '';
+
   programs.bash = {
     initExtra = ''
+      alias pc='proxychains4'
       # swich proxy
       alias sp="switchproxy"
       function switchproxy {
