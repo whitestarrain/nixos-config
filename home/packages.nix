@@ -6,6 +6,7 @@
     ariang
     uftpd
     megatools
+    baidupcs-go
 
     mupdf
     baobab # disk usage analyzer
