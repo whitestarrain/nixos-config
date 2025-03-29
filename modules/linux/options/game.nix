@@ -59,4 +59,16 @@ in
     enable = true;
     protontricks.enable = true;
   };
+
+  # Disable dams(Display Power Management Signaling) to fix the problem of screen turning off when playing games using controller
+  # https://wiki.archlinux.org/title/Display_Power_Management_Signaling
+  services.xserver.extraConfig= ''
+    Section "Extensions"
+      Option "DPMS" "false"
+    EndSection
+
+    Section "ServerFlags"
+      Option "BlankTime" "0"
+    EndSection
+  '';
 }
