@@ -53,6 +53,10 @@
         pkgs.mpvScripts.thumbfast
         pkgs.mpvScripts.mpv-playlistmanager
       ];
+      config = {
+        # enable hardware acceleration
+        hwdec = "auto";
+      };
     };
   };
 
