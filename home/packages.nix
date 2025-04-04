@@ -9,6 +9,7 @@
     baidupcs-go
 
     mupdf
+    zathura
     baobab # disk usage analyzer
     rar
     kdePackages.ark # gui archive manager

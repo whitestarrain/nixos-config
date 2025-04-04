@@ -17,6 +17,7 @@
 
     # audio
     audacious
+    cmus # console music player
 
     # image
     flameshot # screenshot
