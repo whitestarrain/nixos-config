@@ -44,4 +44,10 @@
       force = true;
     };
   };
+
+  programs.bash = {
+    initExtra = (builtins.readFile "${pkgs.nnn}/share/quitcd/quitcd.bash_sh_zsh") + ''
+      alias y='EDITOR=nvim y'
+    '';
+  };
 }

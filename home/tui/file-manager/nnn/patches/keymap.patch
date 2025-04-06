@@ -1,0 +1,31 @@
+diff --git a/src/nnn.c b/src/nnn.c
+index 6fbba10..4ed152c 100644
+--- a/src/nnn.c
++++ b/src/nnn.c
+@@ -5274,7 +5274,7 @@ static void show_help(const char *path)
+ 	      "8B (,)  Book(mark)%11b ^/  Select bookmark\n"
+ 		"a1-4  Context%11(Sh)Tab  Cycle/new context\n"
+ 	    "62Esc ^Q  Quit%19^y  Next young\n"
+-		 "b^G  QuitCD%18Q  Pick/err, quit\n"
++		 "b Q  QuitCD%18^G Pick/err, quit\n"
+ 		  "cq  Quit context\n"
+ 	"0\n"
+ 	"1FILTER & PROMPT\n"
+diff --git a/src/nnn.h b/src/nnn.h
+index 22f01fb..07c67eb 100644
+--- a/src/nnn.h
++++ b/src/nnn.h
+@@ -282,11 +282,11 @@ static struct key bindings[] = {
+ 	/* Quit a context */
+ 	{ 'q',            SEL_QUITCTX },
+ 	/* Change dir on quit */
+-	{ CONTROL('G'),   SEL_QUITCD },
++	{ CONTROL('G'),   SEL_QUITERR },
+ 	/* Quit */
+ 	{ CONTROL('Q'),   SEL_QUIT },
+ 	/* Quit with an error code */
+-	{ 'Q',            SEL_QUITERR },
++	{ 'Q',            SEL_QUITCD },
+ #ifndef NOMOUSE
+ 	{ KEY_MOUSE,      SEL_CLICK },
+ #endif
