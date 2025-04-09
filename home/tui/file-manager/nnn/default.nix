@@ -12,14 +12,15 @@
       src = "${pkgs.nnn}/share/plugins";
       mappings = {
         p = "preview-tui";
+        # TODO: use st rather than xterm
         s = "preview-tabbed";
         z = "autojump";
-        c = "cdpath";
-        m = "chksum"; # Create and verify checksums
+        b = "cdpath"; # cd bookmark
         f = "finder"; # find
         n = "fixname"; # fix name
-        b = "oldbigfile"; # List large files by access time
         o = "nuke";
+        c = "chksum"; # create and verify checksums
+        m = "nmount";
       };
     };
     extraPackages = with pkgs; [
@@ -38,6 +39,8 @@
       ueberzugpp
       atool # archive command line helper
       jq
+      udisks
+      # util-linux # lsblk
     ];
   };
 
