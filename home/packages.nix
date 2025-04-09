@@ -23,5 +23,6 @@
     calibre
     newsflash
     # discord
+    gpick
   ]);
 }
