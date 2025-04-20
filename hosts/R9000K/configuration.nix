@@ -13,6 +13,7 @@
       "game.nix"
       "ignore-lid-close.nix"
       "tlp.nix"
+      "virtualisation.nix"
     ])
     ++ [ ./users.nix ]
   );
@@ -27,6 +28,8 @@
       "default.clock.allowed-rates" = [44100 48000];
     };
   };
+
+  virtualisation.docker.storageDriver = "btrfs";
 
   # The first version of NixOS installed on the machine.
   # And is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
