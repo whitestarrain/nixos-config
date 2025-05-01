@@ -70,7 +70,7 @@
         ${pkgs.xorg.xrandr}/bin/xrandr --output $ALL_DP --rate 165.02 --mode 2560x1600
       else
         # temporary hard coding
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --off --output DP-2 --rate 165 --mode 2560x1440
+        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --off --output DP-2 --rate 165 --scale 1.2x1.2 --mode 2560x1440
       fi
     else
       # igpu and dgpu (Optimus mode)
@@ -81,6 +81,8 @@
       fi
     fi
   '';
+
+  services.xserver.dpi = lib.mkForce 172;
 
   # boot.kernelParams = [
   #   "video=DP-2:2560x1440@144" # default 60 fps, kernel params can't work
