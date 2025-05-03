@@ -90,9 +90,9 @@
   };
 
   programs.bash.initExtra = ''
-      nix-dev() {
-        nix develop $* -c nix shell nixpkgs#bashInteractive -c bash
-      }
+    nix-dev() {
+      nix develop $* -c nix shell nixpkgs#bashInteractive -c bash
+    }
   '';
 
   xdg.configFile."pip/pip.conf".text = ''
@@ -107,4 +107,12 @@
       enableBashIntegration = true;
     };
   };
+
+  # extra jdk version
+  home.file = (builtins.listToAttrs (builtins.map
+    (jdk: {
+      name = ".dev/jdks/${jdk.pname}_${jdk.version}";
+      value = { source = jdk; };
+    })
+    [ pkgs.jdk8 pkgs.jdk11 pkgs.jdk23 pkgs.zulu11 pkgs.zulu17 ]));
 }
