@@ -70,7 +70,7 @@
         ${pkgs.xorg.xrandr}/bin/xrandr --output $ALL_DP --rate 165.02 --mode 2560x1600
       else
         # temporary hard coding
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --off --output DP-2 --rate 165 --scale 1.2x1.2 --mode 2560x1440
+        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-4 --off --output DP-2 --rate 165 --scale 1.3x1.3 --mode 2560x1440
       fi
     else
       # igpu and dgpu (Optimus mode)
