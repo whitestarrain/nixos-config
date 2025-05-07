@@ -42,7 +42,8 @@
     # texlive.combined.scheme-full
 
     # lua
-    lua
+    lua5_4_compat
+    lua54Packages.luarocks
     lua-language-server
 
     # nodejs
