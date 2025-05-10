@@ -9,6 +9,7 @@
     curl
     git
     tmux
+    screen
     which
     gnutar
     zip
