@@ -36,6 +36,7 @@
     bc
     cloc
     scc # replace cloc
+    icdiff # better diff
   ]);
 
   programs.git = {
