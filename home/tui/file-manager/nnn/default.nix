@@ -1,6 +1,12 @@
 { pkgs, pkgs-unstable, ... }:
 
 {
+  home.packages = (with pkgs;[
+      # ffmpegthumbnailer
+      mediainfo
+      exiftool
+      viu
+  ]);
   programs.nnn = {
     enable = true;
     package = (pkgs-unstable.nnn.override {
