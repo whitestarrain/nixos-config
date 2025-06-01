@@ -160,7 +160,7 @@
           "video/x-ogm" = video;
           "video/x-theora+ogg" = video;
           "video/x-theora" = video;
-
+          "video/MP2T" = video;
         };
 
       associations.removed = { };
