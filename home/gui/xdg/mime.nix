@@ -20,6 +20,9 @@
         {
           "inode/directory" = [ "thunar.desktop" ];
 
+          # empty file
+          "inode/x-empty" = [ "editor" ];
+
           "application/json" = browser;
           "application/pdf" = browser;
           "application/rdf+xml" = browser;

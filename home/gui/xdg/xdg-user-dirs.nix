@@ -1,11 +1,6 @@
-{ config, pkgs, helper, ... }:
+{ config, helper, ... }:
 
 {
-  home.packages = with pkgs; [
-    xdg-utils
-    xdg-user-dirs
-  ];
-
   xdg = {
     enable = true;
     cacheHome = "${config.home.homeDirectory}/.cache";
