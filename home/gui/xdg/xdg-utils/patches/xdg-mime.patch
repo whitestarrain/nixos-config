@@ -1,0 +1,21 @@
+diff --git a/scripts/xdg-mime.in b/scripts/xdg-mime.in
+index f9c6bae..eda0761 100644
+--- a/scripts/xdg-mime.in
++++ b/scripts/xdg-mime.in
+@@ -128,12 +128,12 @@ info_lxqt()
+ 
+ info_generic()
+ {
+-    if mimetype --version >/dev/null 2>&1; then
+-        DEBUG 1 "Running mimetype --brief --dereference \"$1\""
+-        mimetype --brief --dereference "$1"
+-    else
++    if file --version >/dev/null 2>&1; then
+         DEBUG 1 "Running file --brief --dereference --mime-type \"$1\""
+         /usr/bin/file --brief --dereference --mime-type "$1" 2> /dev/null
++    else
++        DEBUG 1 "Running mimetype --brief --dereference \"$1\""
++        mimetype --brief --dereference "$1"
+     fi
+ 
+     if [ $? -eq 0 ]; then
