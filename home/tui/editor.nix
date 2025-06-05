@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-2411, ... }:
 
 {
-  home.packages = (with pkgs;[
-    neovim
-    emacs
+  home.packages = ([
+    pkgs-2411.neovim
+    pkgs.emacs
   ]);
 
   programs.bash = {
@@ -13,5 +13,3 @@
     '';
   };
 }
-
-

@@ -9,7 +9,7 @@
     ++ (helper.lib.relativeToRootFiles "modules/linux/options" [
       "bash-drop-dup.nix"
       "bluetooth.nix"
-      "clash-verge.nix"
+      "clash.nix"
       "game.nix"
       "ignore-lid-close.nix"
       "tlp.nix"
