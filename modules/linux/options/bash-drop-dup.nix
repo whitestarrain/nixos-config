@@ -1,7 +1,6 @@
 { pkgs, lib, flake-inputs, ... }:
 
 let
-  # the scripts will cause high cpu usage. TODO: rewrite by perl or python
   drop_dup_command = lib.getExe (pkgs.writeShellApplication {
     name = "bash_drop_dup_command";
     runtimeInputs = with pkgs; [ python3 ];

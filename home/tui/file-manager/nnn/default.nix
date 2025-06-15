@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, helper, ... }:
 
 {
   home.packages = (with pkgs;[
@@ -7,18 +7,17 @@
       exiftool
       viu
   ]);
-  programs.nnn = {
+  programs.nnn = rec {
     enable = true;
     package = (pkgs-unstable.nnn.override {
       withNerdIcons = true;
     }).overrideAttrs (old: {
-      patches = (old.patches or [ ]) ++ [ ./patches/keymap.patch ];
+      patches = (old.patches or [ ]) ++ (helper.lib.scanFilePaths ./patches);
     });
     plugins = {
-      src = "${pkgs.nnn}/share/plugins";
+      src = "${package}/share/plugins";
       mappings = {
         p = "preview-tui";
-        # TODO: use st rather than xterm
         s = "preview-tabbed";
         z = "autojump";
         b = "cdpath"; # cd bookmark
