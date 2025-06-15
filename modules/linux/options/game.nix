@@ -24,9 +24,16 @@ in
   environment.systemPackages = [
     steam-run-appid
 
+    # usage: umu-run "/path/to/game.exe" -opengl -SkipBuildPatchPrereq
+    pkgs.umu-launcher # run proton without steam
+
     pkgs.lutris
+
     # need install dxvk to make sure wine can use the GPU
+    # some game need to set lang env:
+    #   env LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 wine xxx.exe
     pkgs.winetricks
+
     flake-inputs.nix-gaming.packages."${pkgs.system}".wine-ge
 
     # minecraft
