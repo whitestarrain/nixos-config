@@ -5,17 +5,21 @@
   ...
 }:
 
+let
+  nvidia_x11 = config.boot.kernelPackages.nvidiaPackages.stable;
+in
 {
   environment.systemPackages = [
     pkgs.nvtopPackages.full
   ];
 
-  # Enable OpenGL
+  # Enable OpenGL, CUDA
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       libGL
     ];
+    extraPackages32 = [ nvidia_x11.lib32 ];
   };
 
   # Load nvidia driver for Xorg and Wayland
@@ -48,7 +52,7 @@
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = nvidia_x11;
   };
 
   # Optimus://wiki.archlinux.org/title/NVIDIA_Optimus
