@@ -56,6 +56,6 @@
   system.fsPackages = [ pkgs.bindfs ];
 
   environment.sessionVariables = {
-    QT_SCALE_FACTOR = 2;
+    QT_SCALE_FACTOR = "1.5";
   };
 }
