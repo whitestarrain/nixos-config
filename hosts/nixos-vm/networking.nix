@@ -1,7 +1,7 @@
 { lib, helper, ... }:
 
 {
-  imports = (helper.lib.relativeToRootFiles "modules/linux/options/networking" [ "networkd.nix" ]);
+  imports = (helper.lib.relativeToRootFiles "modules/linux/optional/networking" [ "networkd.nix" ]);
   networking.hostName = "nixos-vm";
   systemd.network.networks.ens33 = {
     matchConfig.Name = "ens33";

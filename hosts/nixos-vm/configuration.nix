@@ -2,7 +2,13 @@
 
 {
   imports = (
-    [ ./hardware-configuration.nix ./boot.nix ./networking.nix ]
+    [
+      ./hardware-configuration.nix
+      ./boot.nix
+      ./networking.nix
+
+      (helper.lib.relativeToRoot "modules/linux/host-options.nix")
+    ]
     ++ (helper.lib.scanNixRelativeRootPath "modules/common")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.relativeToRootFiles "modules/linux/desktop" [ "xserver" "pipewire.nix" ])
@@ -14,4 +20,3 @@
   # Don't change this option !!!!
   system.stateVersion = "24.05";
 }
-

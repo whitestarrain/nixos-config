@@ -40,6 +40,11 @@ static const Block blocks[] = {
 		NULL, 0, 13
 	},
 	{"   ", NULL,	 get_cpu_usage, 1,		0},
+
+#ifdef CPU_TERMPERATURE_FILE_PATH
+	{"   ", NULL, get_cpu_temperature, 1,		0},
+#endif
+
 	{"   ", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",	 NULL, 2,		0},
 	{"  󰂄 ", "if [ -f /sys/class/power_supply/*/capacity ]; then cat /sys/class/power_supply/*/capacity; else echo '--'; fi",	 NULL, 10,		0},
 	{"  ", "date '+󰃭 %b %d (%a) 󰅐 %I:%M%p'",			NULL, 30,		0},

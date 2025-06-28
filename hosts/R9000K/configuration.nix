@@ -2,11 +2,17 @@
 
 {
   imports = (
-    [ ./hardware-configuration.nix ./boot.nix ./networking.nix ./nvidia.nix ]
+    [
+      ./hardware-configuration.nix
+      ./boot.nix
+      ./networking.nix
+      ./nvidia.nix
+      (helper.lib.relativeToRoot "modules/linux/host-options.nix")
+    ]
     ++ (helper.lib.scanNixRelativeRootPath "modules/common")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")
-    ++ (helper.lib.relativeToRootFiles "modules/linux/options" [
+    ++ (helper.lib.relativeToRootFiles "modules/linux/optional" [
       "bash-drop-dup.nix"
       "bluetooth.nix"
       "clash.nix"
@@ -31,9 +37,10 @@
 
   virtualisation.docker.storageDriver = "btrfs";
 
+  wsainHostOption.cpuTemperatureFilePath = "/sys/class/hwmon/hwmon3/temp1_input";
+
   # The first version of NixOS installed on the machine.
   # And is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   # Don't change this option !!!!
   system.stateVersion = "24.05";
 }
-
