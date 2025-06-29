@@ -1,5 +1,13 @@
 { pkgs, lib, ... }:
 
+let
+  betterfox = pkgs.fetchFromGitHub {
+    owner = "yokoffing";
+    repo = "Betterfox";
+    rev = "138.0";
+    hash = "sha256-ci9g4Igy2dc7cDtPy+l6NaaEz8YsD0BSixFaYWYOKTs=";
+  };
+in
 {
   home.sessionVariables = {
     MOZ_X11_EGL = "1";
@@ -17,6 +25,11 @@
       name = "default";
       isDefault = true;
       bookmarks = { };
+      extraConfig = builtins.concatStringsSep "\n" [
+        (builtins.readFile "${betterfox}/Securefox.js")
+        (builtins.readFile "${betterfox}/Fastfox.js")
+        (builtins.readFile "${betterfox}/Peskyfox.js")
+      ];
       settings = {
         # common
         "browser.newtabpage.activity-stream.feeds.topsites" = false;
