@@ -37,6 +37,11 @@
     # custom config
   '';
 
+  home.file.".w3m/keymap" = {
+    source = ./keymap.w3m;
+    force = true;
+  };
+
   programs = {
     mpv = {
       enable = true;
