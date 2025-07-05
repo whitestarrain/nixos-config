@@ -27,6 +27,7 @@ static const Block blocks[] = {
 		),
 		NULL, 0, 12
 	},
+	{"  󰯎 ", NULL, get_net_speed, 1,		0},
 	{
 		"  ",
 		STR(
