@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-2411.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -33,7 +32,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixpkgs-2411,
       nixpkgs-unstable,
       nur,
       dotfiles,
@@ -46,7 +44,6 @@
           inherit (nixpkgs) lib;
           pkgs = nixpkgs.legacyPackages.${system};
         };
-        pkgs-2411 = nixpkgs-2411.legacyPackages.${system};
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;

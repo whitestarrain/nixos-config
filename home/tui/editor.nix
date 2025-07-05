@@ -1,8 +1,8 @@
-{ pkgs, pkgs-2411, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = ([
-    pkgs-2411.neovim
+    pkgs.neovim
     pkgs.emacs
   ]);
 
