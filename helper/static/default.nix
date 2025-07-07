@@ -1,4 +1,4 @@
-{ lib, pkgs, helperLib, ... }:
+{ lib, pkgs, ... }:
 
 {
   # ranger_devicons = builtins.fetchGit {
@@ -14,4 +14,3 @@
 
   wallpaper = ./wallpapers/hello_world.jpg;
 }
-
