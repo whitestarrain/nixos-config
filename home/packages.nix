@@ -1,15 +1,19 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  helper,
+  ...
+}:
 
 let
-  netease-cloud-music-gtk-wrapped = lib.hiPrio (
-    pkgs.runCommand "netease-cloud-music-gtk" { nativeBuildInputs = with pkgs; [ makeWrapper ]; } ''
-      mkdir -p $out/bin
-      makeWrapper \
-        ${pkgs.netease-cloud-music-gtk}/bin/netease-cloud-music-gtk4 \
-        $out/bin/netease-cloud-music-gtk4 \
-        --set GDK_SCALE 2
-    ''
-  );
+  netease-cloud-music-gtk-wrapped =
+    helper.lib.wrapEnv pkgs.netease-cloud-music-gtk "bin/netease-cloud-music-gtk4"
+      {
+        GDK_SCALE = 2;
+      };
+  ark-wrapped = helper.lib.wrapEnv pkgs.kdePackages.ark "bin/ark" {
+    QT_SCALE_FACTOR = 1.5;
+  };
 in
 {
   home.packages = (
@@ -25,7 +29,7 @@ in
       zathura
       baobab # disk usage analyzer
       rar
-      kdePackages.ark # gui archive manager
+      ark-wrapped # gui archive manager
 
       mutt # mail client
       irssi # IRC client,
