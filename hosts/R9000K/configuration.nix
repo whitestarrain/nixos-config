@@ -15,7 +15,7 @@
     ++ (helper.lib.relativeToRootFiles "modules/linux/optional" [
       "bash-drop-dup.nix"
       "bluetooth.nix"
-      "clash.nix"
+      "proxy.nix"
       "game.nix"
       "ignore-lid-close.nix"
       "tlp.nix"

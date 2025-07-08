@@ -9,7 +9,6 @@ let
         echo "no HOME env"
         exit
       fi
-      echo "HOME: $HOME"
       python3 ${flake-inputs.dotfiles}/linux-home/.bin/erase_history_dup \
         -o "$HOME/.bash_history" \
         -d 'git ,erase_history_dup,echo ,ls ,cd ,cat ,df ,du ,less ,nix shell ,nix-shell ,nvim temp,git clone,GIT_COMMITTER_DATE,z ,ps ,cloc ,curl ,wget ,markdown_mv ,0,mv ,which ,ra ,nvim ./,nvim ~/,nvim /proc,ra ,kill ,man ,trans ,$,nnn,n ,yazi,y ,./' \
