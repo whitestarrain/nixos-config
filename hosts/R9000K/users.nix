@@ -11,6 +11,10 @@
     hashedPassword = "$7$CU..../....aluH5BErsfgYcgd/H6vPR1$SxDqpmNtJwF6eLetjMfOH3nsBp8fk4CpiAkeFjgFH08";
   };
 
+  users.users.root = {
+    hashedPassword = "$7$CU..../....2DAObhN40BtdyVdHspG43.$6G1hyQ7Se0dQfM5v7t4NqrScCj5XQCcIjmGDXAFHQKD";
+  };
+
   users.groups = {
     wsain = { };
     docker = { };
