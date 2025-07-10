@@ -20,6 +20,7 @@
     docker = { };
     container = { };
     mlocate = { };
+    subconverter = { };
   };
 
   home-manager.users.wsain = rec {
