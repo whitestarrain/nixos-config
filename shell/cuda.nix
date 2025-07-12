@@ -1,5 +1,7 @@
 {
-  pkgs ? import <nixpkgs> { },
+  pkgs ? import <nixpkgs> {
+    config.allowUnfree = true;
+  },
 }:
 let
   lib-path = pkgs.lib.makeLibraryPath [

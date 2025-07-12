@@ -48,7 +48,12 @@
           inherit system;
           config.allowUnfree = true;
         };
-        pkgs-nur = nur.legacyPackages.${system}.repos;
+        pkgs-nur =
+          (import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            overlays = [ nur.overlays.default ];
+          }).nur.repos;
       };
     in
     {
