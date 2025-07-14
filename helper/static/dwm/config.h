@@ -12,7 +12,7 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int swterminheritfs    = 1;        /* 1 terminal inherits fullscreen on unswallow, 0 otherwise */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 0;       /* vertical padding of bar */
+static const int vertpad            = 5;       /* vertical padding of bar */
 static const int sidepad            = 15;       /* horizontal padding of bar */
 static const char *fonts[] = {
 	"DejaVuSansM Nerd Font:size=12",
@@ -30,7 +30,7 @@ static const char col_darkblue[]       = "#355f82";
 static const char col_red[]       = "#e06c75";
 static const char col_yellow[]       = "#e5c07b";
 
-static const unsigned int baralpha    = 0xd0; // 0~255
+static const unsigned int baralpha    = 0xe0; // 0~255
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
