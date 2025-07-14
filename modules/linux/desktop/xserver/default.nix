@@ -9,6 +9,9 @@
 
   services.xserver = {
     enable = true;
-    desktopManager.runXdgAutostartIfNone = true;
+    desktopManager = {
+      runXdgAutostartIfNone = true;
+      wallpaper.mode = "fill";
+    };
   };
 }
