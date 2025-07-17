@@ -6,7 +6,7 @@
     enable = true;
   };
   # Waiting time for connecting to the network, v2ray will request subconverter.
-  systemd.services.v2raya.serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
+  systemd.services.v2raya.unitConfig.After = [ "networking-conncted.service" ];
   systemd.services.subconverter = {
     enable = true;
     unitConfig = {

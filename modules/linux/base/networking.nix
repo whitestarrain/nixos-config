@@ -1,10 +1,27 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  helper,
+  ...
+}:
 
 let
   dnsServers = [
-    "8.8.8.8"
-    "2001:4860:4860::8888"
+    helper.constants.dnsServers.ipv4
+    helper.constants.dnsServers.ipv6
   ];
+  check_network_connection = lib.getExe (
+    pkgs.writeShellApplication {
+      name = "check_network";
+      text = ''
+        for _ in {1..30}; do
+          ping -c1 ${helper.constants.dnsServers.ipv4} &> /dev/null && break;
+          ${pkgs.coreutils}/bin/sleep 1;
+        done
+      '';
+    }
+  );
 in
 {
   # networking tools
@@ -21,5 +38,19 @@ in
     search = [ "wsain.pub" ];
     tempAddresses = "disabled";
     nameservers = dnsServers;
+  };
+
+  systemd.services.networking-conncted = {
+    unitConfig = {
+      Description = "check whether connect to network";
+      After = [
+        "network.target"
+      ];
+    };
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = check_network_connection;
+    };
+    wantedBy = [ "multi-user.target" ];
   };
 }
