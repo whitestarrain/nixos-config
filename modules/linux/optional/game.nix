@@ -1,4 +1,4 @@
-{ pkgs, config, flake-inputs, ... }:
+{ pkgs, pkgs-unstable, flake-inputs, ... }:
 
 let
   steam-run-appid = pkgs.writeShellApplication {
@@ -69,7 +69,7 @@ in
 
   # Disable dams(Display Power Management Signaling) to fix the problem of screen turning off when playing games using controller
   # https://wiki.archlinux.org/title/Display_Power_Management_Signaling
-  services.xserver.extraConfig= ''
+  services.xserver.extraConfig = ''
     Section "Extensions"
       Option "DPMS" "false"
     EndSection
@@ -78,4 +78,14 @@ in
       Option "BlankTime" "0"
     EndSection
   '';
+
+  # alvr not is broken when 24.05->24.11 (https://github.com/NixOS/nixpkgs/pull/308097#issue-2272454747)
+  # please download realse from github, and run with steam-run
+  # init steamVR: sudo setcap CAP_SYS_NICE=eip /path/to/SteamVR/bin/linux64/vrcompositor-launcher
+  # streamVR execute args: /path/to/SteamVR/bin/vrmonitor.sh %command%
+  programs.alvr = {
+    enable = true;
+    package = pkgs-unstable.alvr;
+    openFirewall = true;
+  };
 }
