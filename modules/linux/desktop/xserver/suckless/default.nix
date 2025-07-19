@@ -38,7 +38,7 @@ in
       name = "dwm";
       start = ''
         export _JAVA_AWT_WM_NONREPARENTING=1
-        ${dwmblocks}/bin/dwmblocks &
+        dwmblocks &
         dwm &
         # waitpid must be the dwm's pid
         waitPID=$!

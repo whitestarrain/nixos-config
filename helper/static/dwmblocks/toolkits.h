@@ -74,8 +74,13 @@ void get_cpu_usage(char *buf, int buf_size) {
     }
   }
   total = cpu_usage[0];
+  const char *formats[][2] = {
+    {"(%-3.1f|%3.1f)", "(%-3.1f|%3.0f)",},
+    {"(%-3.0f|%3.1f)", "(%-3.0f|%3.0f)",}
+  };
+  const char *format = formats[max >= 10][total >= 10];
 
-  snprintf(buf, buf_size, "(%-4.1f|%4.1f)", max, total);
+  snprintf(buf, buf_size, format, max, total);
 }
 
 // *******************************************************
