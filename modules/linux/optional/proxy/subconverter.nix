@@ -1,12 +1,8 @@
-{ pkgs, helper, ... }:
+{ helper, ... }:
 
 {
+  # subconverter
   environment.systemPackages = [ helper.derivations.subconverter ];
-  services.v2raya = {
-    enable = true;
-  };
-  # Waiting time for connecting to the network, v2ray will request subconverter.
-  systemd.services.v2raya.unitConfig.After = [ "networking-conncted.service" ];
   systemd.services.subconverter = {
     enable = true;
     unitConfig = {
@@ -21,7 +17,7 @@
       RestartSec = 5;
       Type = "simple";
     };
-    # InstallConfig
+    # auto start
     wantedBy = [ "multi-user.target" ];
   };
 }

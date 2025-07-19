@@ -1,0 +1,35 @@
+global{
+  log_level: info
+  wan_interface: auto
+  auto_config_kernel_parameter: true
+}
+dns {
+  upstream {
+    alidns: 'udp://dns.alidns.com:53'
+    googledns: 'tcp+udp://dns.google.com:53'
+  }
+  routing {
+    request {
+      fallback: alidns
+    }
+  }
+}
+group {
+  my_group{
+    policy: fixed(0)
+  }
+}
+routing{
+  pname(clash) -> must_direct
+  pname(v2ray) -> must_direct
+  pname(v2rayA) -> must_direct
+  pname(subconverter) -> must_direct
+  pname(systemd-resolved) -> must_direct
+  domain(geosite:cn) -> direct
+  ip(geoip:private) -> direct
+  ip(geoip:cn) -> direct
+  fallback: my_group
+}
+node{
+    local:'http://127.0.0.1:7890'
+}

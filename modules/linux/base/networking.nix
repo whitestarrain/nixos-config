@@ -40,7 +40,9 @@ in
     nameservers = dnsServers;
   };
 
+  # only used as check condition
   systemd.services.networking-conncted = {
+    enable = true;
     unitConfig = {
       Description = "check whether connect to network";
       After = [

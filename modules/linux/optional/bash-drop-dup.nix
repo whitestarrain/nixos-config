@@ -26,7 +26,7 @@ in
       Type = "oneshot";
       ExecStart = drop_dup_command;
     };
-    # InstallConfig
+    # auto start
     wantedBy = [ "default.target" ];
   };
 }

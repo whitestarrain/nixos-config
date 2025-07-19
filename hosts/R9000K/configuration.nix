@@ -13,9 +13,9 @@
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/base")
     ++ (helper.lib.scanNixRelativeRootPath "modules/linux/desktop")
     ++ (helper.lib.relativeToRootFiles "modules/linux/optional" [
+      "proxy"
       "bash-drop-dup.nix"
       "bluetooth.nix"
-      "proxy.nix"
       "game.nix"
       "ignore-lid-close.nix"
       "tlp.nix"
