@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
-# media - control and enjoy audio/video
+let
+  show_clip_image = pkgs.writeShellScriptBin "show_clip_image" ''
+    ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png -o | ${pkgs.feh}/bin/feh -
+  '';
+in
 {
   home.packages = with pkgs; [
     # audio control
@@ -26,16 +30,24 @@
     imv
     w3m
     imagemagick
+    feh
+    show_clip_image
 
     # video
     vlc
     ffmpeg-full
   ];
 
-  # https://github.com/catppuccin/cava
-  xdg.configFile."cava/config".text = ''
-    # custom config
-  '';
+  xdg.configFile = {
+    "cava/config" = {
+      source = ./cava_config;
+      force = true;
+    };
+    "feh/buttons" = {
+      source = ./feh_buttons;
+      force = true;
+    };
+  };
 
   home.file.".w3m/keymap" = {
     source = ./keymap.w3m;
