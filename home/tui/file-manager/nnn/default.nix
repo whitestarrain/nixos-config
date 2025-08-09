@@ -24,7 +24,7 @@
         f = "finder"; # find
         n = "fixname"; # fix name
         o = "nuke";
-        c = "chksum"; # create and verify checksums
+        c = "-!_nnn_copypath*"; # copy current file path
         m = "nmount";
       };
     };
