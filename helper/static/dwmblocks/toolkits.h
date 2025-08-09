@@ -75,8 +75,10 @@ void get_cpu_usage(char *buf, int buf_size) {
   }
   total = cpu_usage[0];
   const char *formats[][2] = {
+      // clang-format off
     {"(%-3.1f|%3.1f)", "(%-3.1f|%3.0f)",},
     {"(%-3.0f|%3.1f)", "(%-3.0f|%3.0f)",}
+      // clang-format on
   };
   const char *format = formats[max >= 10][total >= 10];
 
@@ -112,8 +114,7 @@ void get_net_speed(char *buf, int buf_size) {
   static struct timespec prev_time;
   struct timespec curr_time;
   char line[MAX_LINE_LEN], ifname[MAX_INTERFACE_NAME_LEN];
-  unsigned long last_rx_bytes, rx_bytes, tx_bytes, rx_speed = 0, tx_speed = 0,
-                                                   tmp_speed = 0;
+  unsigned long rx_bytes, tx_bytes, rx_speed = 0, tx_speed = 0, tmp_speed = 0;
   short net_card_index = 0;
 
   FILE *fp = fopen("/proc/net/dev", "r");
@@ -140,7 +141,7 @@ void get_net_speed(char *buf, int buf_size) {
   // parse net card rx,tx data, get max speed
   while (fgets(line, sizeof(line), fp)) {
     // parse data
-    if (sscanf(line, " %[^:]: %llu %*u %*u %*u %*u %*u %*u %*u %lu", ifname,
+    if (sscanf(line, " %[^:]: %lu %*u %*u %*u %*u %*u %*u %*u %lu", ifname,
                &rx_bytes, &tx_bytes) != 3) {
       continue;
     }
@@ -181,18 +182,81 @@ void get_net_speed(char *buf, int buf_size) {
 
 // *******************************************************
 
-#ifdef CPU_TERMPERATURE_FILE_PATH
+#ifdef CPU_TERMPERATURE_DEVICE_PATH
 
-static int cpu_file_exist_flag = 1;
+#include <dirent.h>
+#include <sys/stat.h>
+
+static int temp_file_exist_flag = 1;
+static int temp_file_searched_flag = 0;
+static char temp_file_path[MAX_LINE_LEN] =
+    TOSTRING(CPU_TERMPERATURE_DEVICE_PATH);
+static const char *TEMP_FILE_NAME = "temp1_input";
+static const char *HARDWARE_MONITORING = "hwmon";
+
 void get_cpu_temperature(char *buf, int buf_size) {
-  if (!cpu_file_exist_flag) {
+  if (!temp_file_exist_flag) {
     skip_update_status(buf, buf_size, NULL);
     return;
   }
-  char *file_path = TOSTRING(CPU_TERMPERATURE_FILE_PATH);
-  FILE *fp = fopen(file_path, "r");
+
+  // search hwmon temperature file under device dir
+  if (!temp_file_searched_flag) {
+    temp_file_searched_flag = 1; // just search once
+
+    // check path
+    DIR *device_dir = NULL;
+    const char *device_dir_path = TOSTRING(CPU_TERMPERATURE_DEVICE_PATH);
+    struct stat file_stat;
+    if (stat(device_dir_path, &file_stat) != 0) {
+      goto SEARCH_FAILED_LABEL;
+    }
+    if (!S_ISDIR(file_stat.st_mode)) {
+      goto SEARCH_FAILED_LABEL;
+    }
+
+    device_dir = opendir(device_dir_path);
+    if (device_dir == NULL) {
+      goto SEARCH_FAILED_LABEL;
+    }
+    struct dirent *dir_item;
+    while ((dir_item = readdir(device_dir)) != NULL) {
+      // search termperature file
+      if (strcmp(dir_item->d_name, TEMP_FILE_NAME) == 0) {
+        strcat(temp_file_path, "/");
+        strcat(temp_file_path, dir_item->d_name);
+        temp_file_exist_flag = 1;
+        closedir(device_dir);
+        goto SEARCH_SUCCESS_LABEL;
+      }
+      // enter hwmon path
+      if (strlen(dir_item->d_name) >= strlen(HARDWARE_MONITORING) &&
+          dir_item->d_type == DT_DIR &&
+          strncmp(dir_item->d_name, HARDWARE_MONITORING,
+                  strlen(HARDWARE_MONITORING)) == 0) {
+        strcat(temp_file_path, "/");
+        strcat(temp_file_path, dir_item->d_name);
+        closedir(device_dir);
+        device_dir = opendir(temp_file_path);
+      }
+    }
+
+  // if can't find temperature file path
+  SEARCH_FAILED_LABEL:
+    if (device_dir != NULL) {
+      closedir(device_dir);
+    }
+    temp_file_exist_flag = 0;
+    skip_update_status(buf, buf_size, NULL);
+    return;
+  }
+
+SEARCH_SUCCESS_LABEL:
+
+  FILE *fp = fopen(temp_file_path, "r");
   if (fp == NULL) {
-    cpu_file_exist_flag = 0;
+    printf("fp is null");
+    temp_file_exist_flag = 0;
     skip_update_status(buf, buf_size, fp);
     return;
   }
@@ -202,7 +266,9 @@ void get_cpu_temperature(char *buf, int buf_size) {
     return;
   }
   int temperature = atoi(line) / 1000;
-  fclose(fp);
+  if (fp != NULL) {
+    fclose(fp);
+  }
   snprintf(buf, buf_size, "%d°C", temperature);
 }
 

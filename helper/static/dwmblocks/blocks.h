@@ -42,7 +42,7 @@ static const Block blocks[] = {
 	},
 	{"   ", NULL,	 get_cpu_usage, 1,		0},
 
-#ifdef CPU_TERMPERATURE_FILE_PATH
+#ifdef CPU_TERMPERATURE_DEVICE_PATH
 	{"   ", NULL, get_cpu_temperature, 1,		0},
 #endif
 

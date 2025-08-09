@@ -37,7 +37,7 @@
 
   virtualisation.docker.storageDriver = "btrfs";
 
-  wsainHostOption.cpuTemperatureFilePath = "/sys/class/hwmon/hwmon3/temp1_input";
+  wsainHostOption.cpuTemperatureDevicePath = "/sys/devices/pci0000:00/0000:00:18.3";
 
   # The first version of NixOS installed on the machine.
   # And is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

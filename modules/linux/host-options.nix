@@ -9,7 +9,7 @@
   # custom options will be placed here
   options = {
     wsainHostOption = {
-      cpuTemperatureFilePath = lib.mkOption {
+      cpuTemperatureDevicePath = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
         default = null;
         description = ''
