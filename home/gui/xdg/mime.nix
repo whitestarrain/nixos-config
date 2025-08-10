@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # search desktop file: echo $XDG_DATA_DIRS | tr ':' '\n' | xargs -I {} ls 2>/dev/null -lh {}/applications | grep -i ark
   xdg = {
     enable = true;
     configFile."mimeapps.list".force = true;
@@ -21,7 +22,10 @@
           "inode/directory" = [ "thunar.desktop" ];
 
           # empty file
-          "inode/x-empty" = [ "editor" ];
+          "inode/x-empty" = editor;
+
+          # archive
+          "application/x-rar" = [ "org.kde.ark.desktop" ];
 
           "application/json" = browser;
           "application/pdf" = browser;
