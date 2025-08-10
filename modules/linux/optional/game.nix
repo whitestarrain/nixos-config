@@ -34,7 +34,8 @@ in
     #   env LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 wine xxx.exe
     pkgs.winetricks
 
-    flake-inputs.nix-gaming.packages."${pkgs.system}".wine-ge
+    # flake-inputs.nix-gaming.packages."${pkgs.system}".wine-ge
+    pkgs.wine
 
     # minecraft
     pkgs.hmcl # adjust the font if can't display number
