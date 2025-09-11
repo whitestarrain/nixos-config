@@ -105,3 +105,10 @@ update:
 [group('nix')]
 update-package input:
   nix flake update {{input}}
+
+# get nix package path
+[group('nix')]
+get_path pkg_name:
+  # nix-store -r $(nix-instantiate -A stdenv.cc.cc '<nixpkgs>')
+  NIXPKGS_ALLOW_UNFREE=1 nix eval --impure nixpkgs#{{pkg_name}}.outPath
+

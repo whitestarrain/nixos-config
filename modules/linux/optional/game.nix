@@ -12,10 +12,6 @@ let
   };
 in
 {
-  environment.sessionVariables = {
-    STEAM_FORCE_DESKTOPUI_SCALING = "1.5";
-  };
-
   imports = [
     flake-inputs.nix-gaming.nixosModules.pipewireLowLatency
     flake-inputs.nix-gaming.nixosModules.platformOptimizations
@@ -26,9 +22,9 @@ in
 
     # usage: umu-run "/path/to/game.exe" -opengl -SkipBuildPatchPrereq
     # add "Microsoft Visual C ++ Runtime 2022" with winetricks:
-      # umu-run winetricks vcrun2022
-      # this will cause error, don't use that: WINE=umu-run WINEPREFIX=~/Games/umu/umu-default winetricks
-      # Sometimes, `rm -rf ~/Games/umu` can solve all problems
+    #   umu-run winetricks vcrun2022
+    #   this will cause error, don't use that: WINE=umu-run WINEPREFIX=~/Games/umu/umu-default winetricks
+    #   Sometimes, `rm -rf ~/Games/umu` can solve all problems
     pkgs.umu-launcher # run proton without steam
 
     pkgs.lutris
@@ -38,8 +34,8 @@ in
     pkgs.winetricks
 
     # wine need install dxvk to make sure wine can use the GPU,
-      # can install dxvk with winecfg
-      # winetricks has more runtime to install than wincfg
+    #   can install dxvk with winecfg
+    #   winetricks has more runtime to install than wincfg
     pkgs.wine
     pkgs.wine64
 
@@ -70,6 +66,11 @@ in
 
   # Full-screen may cause the game to black the screen when switching tag in dwm
   programs.steam = {
+    package = pkgs.steam.override {
+      extraEnv = {
+        GDK_SCALE = 2;
+      };
+    };
     enable = true;
     protontricks.enable = true;
   };
