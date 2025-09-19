@@ -47,6 +47,8 @@ in
         "media.av1.enabled" = true;
         "media.ffmpeg.vaapi.enabled" = true;
         "media.hardware-video-decoding.force-enabled" = true;
+        # if set to true, firefox will crash when play video on 143.0 version
+        "media.hardware-video-encoding.enabled" = false;
         "media.hls.enabled" = true;
         "media.videocontrols.picture-in-picture.enabled" = false;
         # security
