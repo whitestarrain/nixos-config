@@ -20,7 +20,9 @@ group {
   }
 }
 routing{
+  pname(NetworkManager) -> direct
   pname(clash) -> must_direct
+  pname(mihomo) -> must_direct
   pname(v2ray) -> must_direct
   pname(v2rayA) -> must_direct
   pname(subconverter) -> must_direct

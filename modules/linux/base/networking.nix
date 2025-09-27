@@ -15,6 +15,7 @@ let
     pkgs.writeShellApplication {
       name = "check_network";
       text = ''
+        # check network connection for 10 min
         for _ in {1..30}; do
           ping -c1 ${helper.constants.dnsServers.ipv4} &> /dev/null && break;
           ${pkgs.coreutils}/bin/sleep 1;
@@ -42,7 +43,7 @@ in
 
   # only used as check condition
   systemd.services.networking-conncted = {
-    enable = true;
+    enable = false;
     unitConfig = {
       Description = "check whether connect to network";
       After = [
