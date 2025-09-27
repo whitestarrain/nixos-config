@@ -50,6 +50,12 @@ rebuild-cn:
   # rebuild to generate current generation
   {{sudo_E}} nixos-rebuild switch --option substituters https://mirrors.ustc.edu.cn/nix-channels/store
 
+[linux]
+[group('nix')]
+rebuild-origin:
+  # rebuild to generate current generation
+  {{sudo_E}} nixos-rebuild switch --option substituters https://cache.nixos.org
+
 # add nix-daemon proxy env
 [linux]
 [group('nix')]
