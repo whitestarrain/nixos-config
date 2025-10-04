@@ -46,7 +46,7 @@ void drw_clr_create(Drw *drw, Clr *dest, const char *clrname, unsigned int alpha
 Clr *drw_scm_create(Drw *drw, const char *clrnames[], const unsigned int alphas[], size_t clrcount);
 
 /* Cursor abstraction */
-Cur *drw_cur_create(Drw *drw, int shape);
+Cur *drw_cur_create(Drw *drw, char* shape);
 void drw_cur_free(Drw *drw, Cur *cursor);
 
 /* Drawing context manipulation */

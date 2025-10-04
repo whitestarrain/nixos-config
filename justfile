@@ -114,7 +114,7 @@ update-package input:
 
 # get nix package path
 [group('nix')]
-get_path pkg-name:
+get-path pkg-name:
   # nix-store -r $(nix-instantiate -A stdenv.cc.cc '<nixpkgs>')
   NIXPKGS_ALLOW_UNFREE=1 nix eval --impure nixpkgs#{{pkg-name}}.outPath
 

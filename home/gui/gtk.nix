@@ -30,4 +30,12 @@
       package = pkgs.fluent-gtk-theme;
     };
   };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.capitaine-cursors-themed;
+    name = "Capitaine Cursors (Nord) - White";
+    size = 40;
+  };
 }

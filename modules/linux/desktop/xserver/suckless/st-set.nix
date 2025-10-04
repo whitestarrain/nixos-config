@@ -1,7 +1,7 @@
 { pkgs, helper, ... }:
 let
   st = (
-    pkgs.st.overrideAttrs {
+    (pkgs.st.override { extraLibs = [ pkgs.xorg.libXcursor ]; }).overrideAttrs {
       src = helper.static.st;
     }
   );
