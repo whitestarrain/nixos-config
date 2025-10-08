@@ -123,3 +123,7 @@ get-path pkg-name:
 instantiate pkg-name:
   nix-store -r $(nix-instantiate -A {{pkg-name}} '<nixpkgs>')
 
+[group('nix')]
+get-outputs nix_path:
+  nix-store --query --outputs $(nix-store --query --deriver {{nix_path}})
+
