@@ -51,6 +51,7 @@ in
         "media.hardware-video-encoding.enabled" = false;
         "media.hls.enabled" = true;
         "media.videocontrols.picture-in-picture.enabled" = false;
+        # "media.suspend-bkgnd-video.enabled" = false;
         # security
         "security.insecure_connection_text.enabled" = true;
         "security.insecure_connection_text.pbmode.enabled" = true;
