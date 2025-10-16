@@ -1,20 +1,78 @@
-{ pkgs, lib, flake-inputs, ... }:
+{
+  pkgs,
+  lib,
+  flake-inputs,
+  ...
+}:
 
 let
-  drop_dup_command = lib.getExe (pkgs.writeShellApplication {
-    name = "bash_drop_dup_command";
-    runtimeInputs = with pkgs; [ python3 ];
-    text = ''
-      if [[ -z "$HOME" ]]; then
-        echo "no HOME env"
-        exit
-      fi
-      python3 ${flake-inputs.dotfiles}/linux-home/.bin/erase_history_dup \
-        -o "$HOME/.bash_history" \
-        -d 'git ,erase_history_dup,echo ,ls ,cd ,cat ,df ,du ,less ,nix shell ,nix-shell ,nvim temp,git clone,GIT_COMMITTER_DATE,z ,ps ,pstree ,cloc ,curl ,wget ,markdown_mv ,0,mv ,which ,ra ,nvim ./,nvim ~/,nvim /proc,ra ,kill ,man ,trans ,$,nnn,n ,yazi,y ,./,ping ,history ,chmod ' \
-        -w 'sudo ,pc ,proxychains4 ,sp ,switchproxy '
-    '';
-  });
+  # nix-shell --pure will truncate ~/.bash_history to 1000 line
+  history_file_path = "$HOME/.bash_histfile";
+  useless_command_prefix = builtins.concatStringsSep "," [
+    "$"
+    "./"
+    "/"
+    "0"
+    "cat "
+    "cd "
+    "chmod "
+    "cloc "
+    "curl "
+    "df "
+    "du "
+    "echo "
+    "erase_history_dup"
+    "git "
+    "history "
+    "kill "
+    "less "
+    "ls "
+    "man "
+    "markdown_mv "
+    "mv "
+    "n "
+    "nix shell "
+    "nix-shell "
+    "nnn"
+    "nvim ./"
+    "nvim /proc"
+    "nvim temp"
+    "nvim ~/"
+    "ping "
+    "ps "
+    "pstree "
+    "ra "
+    "ra "
+    "trans "
+    "wget "
+    "which "
+    "y "
+    "yazi"
+    "z "
+  ];
+  wrap_command_prefix = builtins.concatStringsSep "," [
+    "pc "
+    "proxychains4 "
+    "sp "
+    "sudo "
+    "switchproxy "
+  ];
+  drop_dup_command = lib.getExe (
+    pkgs.writeShellApplication {
+      name = "bash_drop_dup_command";
+      runtimeInputs = with pkgs; [ python3 ];
+      text = ''
+        if [[ -z "$HOME" ]]; then
+          echo "no HOME env"
+          exit
+        fi
+        python3 ${flake-inputs.dotfiles}/linux-home/.bin/erase_history_dup \
+          -o "${history_file_path}" \
+          -d "${useless_command_prefix}" \
+          -w "${wrap_command_prefix}"
+      '';
+    }
+  );
 in
 {
   systemd.user.services.bash-drop-dup = {
@@ -28,5 +86,12 @@ in
     };
     # auto start
     wantedBy = [ "default.target" ];
+    environment = {
+      HISTFILE = history_file_path;
+    };
+  };
+  environment.variables = {
+    # nix-shell --pure will truncate ~/.bash_history. to 1000 line
+    HISTFILE = history_file_path;
   };
 }
