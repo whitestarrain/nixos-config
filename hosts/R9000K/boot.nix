@@ -2,6 +2,8 @@
 
 {
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+  # touchpad
+  boot.blacklistedKernelModules = ["elan_i2c"];
 
   boot.loader.grub = {
     # UEFI boot, need to set device to "nodev"
