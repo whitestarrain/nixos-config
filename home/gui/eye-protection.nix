@@ -6,7 +6,7 @@
     # test: gammastep -x && sleep 1 && gammastep -O 5500
     temperature = {
       day = 5500;
-      night = 4700;
+      night = 5100;
     };
     settings = {
       general = {
