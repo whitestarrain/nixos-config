@@ -89,8 +89,10 @@
 
   programs.go = {
     enable = true;
-    goBin = ".local/bin";
-    goPath = ".local/share/go";
+    env = {
+      GOBIN = ".local/bin";
+      GOPATH = ".local/share/go";
+    };
   };
 
   programs.bash.initExtra = ''
