@@ -1,5 +1,6 @@
 # nix-build -E 'with import <nixpkgs> {}; callPackage ./subconverter.nix {}'
 # nix-shell -E 'with import <nixpkgs> {}; callPackage ./subconverter.nix {}'
+# unpackPhase; cd source; patchPhase; updateAutotoolsGnuConfigScriptsPhase; configurePhase; mkdir build; cd build; cmake --log-level=TRACE ..
 {
   pkgs,
   stdenv,
@@ -17,15 +18,15 @@
 let
   libcron = pkgs.callPackage ./libcron.nix { };
   quickjspp = pkgs.callPackage ./quickjspp.nix { };
-  toml11-v4 = toml11.overrideAttrs rec {
-    version = "4.2.0";
-    src = fetchFromGitHub {
-      owner = "ToruNiina";
-      repo = "toml11";
-      rev = "v${version}";
-      hash = "sha256-NUuEgTpq86rDcsQnpG0IsSmgLT0cXhd1y32gT57QPAw=";
-    };
-  };
+  # toml11-v4 = toml11.overrideAttrs rec {
+  #   version = "4.2.0";
+  #   src = fetchFromGitHub {
+  #     owner = "ToruNiina";
+  #     repo = "toml11";
+  #     rev = "v${version}";
+  #     hash = "sha256-NUuEgTpq86rDcsQnpG0IsSmgLT0cXhd1y32gT57QPAw=";
+  #   };
+  # };
 in
 stdenv.mkDerivation rec {
   pname = "subconverter";
@@ -58,7 +59,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     curl
     rapidjson
-    toml11-v4
+    toml11
     pcre2
     yaml-cpp
     libcron
