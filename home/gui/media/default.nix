@@ -16,7 +16,7 @@ in
     libva-utils
     vdpauinfo
     vulkan-tools
-    glxinfo
+    mesa-demos
     cava # for visualizing audio
 
     # audio

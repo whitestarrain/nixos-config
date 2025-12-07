@@ -66,10 +66,10 @@ in
       fcitx5-rime-custom # rime support
 
       # lang support
-      fcitx5-chinese-addons # pinyin
+      qt6Packages.fcitx5-chinese-addons # pinyin
       fcitx5-mozc # japanese
 
-      fcitx5-configtool
+      qt6Packages.fcitx5-configtool
     ];
   };
 }

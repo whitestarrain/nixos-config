@@ -1,9 +1,10 @@
 { pkgs, config, ... }:
 
 {
-  home.packages = with pkgs; [
-    awf # gtk widget factory
-  ];
+  # home.packages = with pkgs; [
+  #   # 'awf' has been removed as the upstream project was archived in 2021
+  #   awf # gtk widget factory. Not available after on 25.11
+  # ];
 
   # gtk's theme settings, generate files:
   #   1. ~/.gtkrc-2.0

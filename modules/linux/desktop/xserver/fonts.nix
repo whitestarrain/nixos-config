@@ -16,9 +16,8 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       noto-fonts-emoji-blob-bin
-      noto-fonts-extra
       recursive
       sarasa-gothic
       source-code-pro
@@ -33,7 +32,7 @@
       source-serif-pro
       terminus_font_ttf
       ubuntu-sans-mono
-      ubuntu_font_family
+      ubuntu-classic
       wqy_microhei
       wqy_zenhei
     ]) ++ [
