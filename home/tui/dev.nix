@@ -49,8 +49,8 @@
       lua-language-server
 
       # nodejs
-      nodejs
-      nodePackages.npm
+      nodejs_22
+      # nodePackages.npm
 
       # python
       python313
