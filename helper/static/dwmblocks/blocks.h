@@ -38,7 +38,7 @@ static const Block blocks[] = {
 			volume="$(echo "$volume_percent * 100 / 1" | bc)";
 			printf "\x0d \x0d${volume}"
 		),
-		NULL, 0, 13
+		NULL, 60, 13
 	},
 	{"   ", NULL,	 get_cpu_usage, 1,		0},
 

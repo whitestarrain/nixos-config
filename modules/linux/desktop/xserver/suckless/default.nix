@@ -43,7 +43,7 @@ in
         # waitpid must be the dwm's pid
         waitPID=$!
         # update volume after startup
-        (sleep 1 && kill -47 $(pidof dwmblocks)) &
+        (for (( i = 0; i < 3; i++ )); do sleep 1 && kill -47 $(pidof dwmblocks); done;) &
       '';
     };
   };
