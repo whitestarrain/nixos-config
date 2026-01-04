@@ -117,6 +117,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *screenshotcmd[] = {"flameshot", "gui", NULL};
+static const char *cliphistorycmd[] = {"copyq", "menu", NULL};
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = {
     "st",   "-t",          scratchpadname, "-g", "120x35",      "-e",
@@ -127,6 +128,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Escape, togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_F1,     spawn,          {.v = screenshotcmd } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = cliphistorycmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
