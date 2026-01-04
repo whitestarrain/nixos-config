@@ -4,14 +4,19 @@
   # boot.kernelModules = ["vfio-pci"];
 
   virtualisation = {
-    docker = {
+    # docker = {
+    #   enable = true;
+    #   daemon.settings = {
+    #     proxies = {
+    #       http-proxy = "http://127.0.0.1:7890";
+    #       https-proxy = "http://127.0.0.1:7890";
+    #     };
+    #   };
+    #   enableOnBoot = false;
+    # };
+
+    podman = {
       enable = true;
-      daemon.settings = {
-        # enables pulling using containerd, which supports restarting from a partial pull
-        # https://docs.docker.com/storage/containerd/
-        # "features" = {"containerd-snapshotter" = true;};
-      };
-      enableOnBoot = false;
     };
   };
 
