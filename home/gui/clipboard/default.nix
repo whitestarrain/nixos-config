@@ -10,7 +10,7 @@ let
   copyq = helper.lib.wrapEnv pkgs.copyq "bin/copyq" {
     QT_SCALE_FACTOR = 1.5;
   };
-  backupScript = pkgs.writeShellScriptBin "clipmenu" ''
+  clipmenu = pkgs.writeShellScriptBin "clipmenu" ''
     ${copyq}/bin/copyq menu
   '';
 in
@@ -20,6 +20,12 @@ in
     package = copyq;
   };
   home.packages = [
-    backupScript
+    clipmenu
   ];
+  xdg.configFile = {
+    "copyq/copyq-commands.ini" = {
+      source = ./copyq-commands.ini;
+      force = true;
+    };
+  };
 }
