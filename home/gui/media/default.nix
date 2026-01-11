@@ -47,6 +47,10 @@ in
       source = ./feh_buttons;
       force = true;
     };
+    "mpv/mpv.conf" = {
+      source = ./mpv.conf;
+      force = true;
+    };
   };
 
   home.file.".w3m/keymap" = {
@@ -71,10 +75,6 @@ in
         pkgs.mpvScripts.thumbfast
         pkgs.mpvScripts.mpv-playlistmanager
       ];
-      config = {
-        # enable hardware acceleration
-        hwdec = "auto";
-      };
     };
   };
 
