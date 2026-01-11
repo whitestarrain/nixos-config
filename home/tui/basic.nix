@@ -46,6 +46,7 @@
       scc # replace cloc
       icdiff # better diff
       delta # better git diff
+      figlet # ascii art
     ]
   );
 
