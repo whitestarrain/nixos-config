@@ -65,6 +65,7 @@ in
   };
 
   # Full-screen may cause the game to black the screen when switching tag in dwm
+  # if steam.sh segmentation fault, run `systemctl --user restart pipewire` (https://github.com/valvesoftware/steam-for-linux/issues/12211)
   programs.steam = {
     package = pkgs.steam.override {
       extraEnv = {
