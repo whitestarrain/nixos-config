@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   clashtui_config_dir = "/etc/clashtui";
@@ -41,7 +41,7 @@ in
 
     if [[ ! -f ${mihomo_config_path}/config.yaml ]]; then
     cat > ${mihomo_config_path}/config.yaml << EOF
-      mixed-port: 7890
+      mixed-port: ${config.wsainHostOption.proxy-port}
       external-controller: 127.0.0.1:9090
     EOF
     fi
@@ -72,7 +72,7 @@ in
       user = "mihomo";
       group = "mihomo";
       text = ''
-        mixed-port: 7890
+        mixed-port: ${config.wsainHostOption.proxy-port}
         allow-lan: true
         external-controller: 127.0.0.1:9090
         external-ui: ${mihomo_config_path}/metacubexd

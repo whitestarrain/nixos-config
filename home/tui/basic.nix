@@ -3,6 +3,8 @@
   helper,
   flake-inputs,
   user,
+  config,
+  sysConfig,
   ...
 }:
 
@@ -98,7 +100,7 @@
     enable = true;
     settings = {
       tl = [ "zh" ];
-      proxy = "127.0.0.1:7890";
+      proxy = "127.0.0.1:${sysConfig.wsainHostOption.proxy-port}";
     };
   };
 }

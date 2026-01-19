@@ -19,16 +19,9 @@ in
   home.packages = (
     with pkgs;
     [
-      aria2
-      ariang
       uftpd
-      megatools
-      baidupcs-go
 
-      mupdf
-      zathura
       baobab # disk usage analyzer
-      rar
       ark-wrapped # gui archive manager
 
       mutt # mail client
@@ -40,7 +33,6 @@ in
       calibre
       newsflash
       # discord
-      gpick
     ]
   );
 }

@@ -22,6 +22,7 @@
     ripgrep
     gzip
     bzip2
+    rar
 
     # monitor
     btop # bashtop, replacement of htop/nmon

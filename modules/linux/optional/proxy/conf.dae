@@ -33,5 +33,5 @@ routing{
   fallback: my_group
 }
 node{
-    local:'http://127.0.0.1:7890'
+    local:'http://127.0.0.1:@PROXY_PORT@'
 }
