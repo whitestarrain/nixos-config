@@ -12,8 +12,25 @@ let
 in
 pkgs.mkShell {
   buildInputs = with pkgs; [
-    # cudatoolkit
     stdenv.cc
+
+    cudatoolkit
+
+    libGLU
+    libGL
+
+    xorg.libXi
+    xorg.libXmu
+    freeglut
+
+    xorg.libXext
+    xorg.libX11
+    xorg.libXv
+    xorg.libXrandr
+
+    zlib
+
+    ncurses5
   ];
   shellHook = ''
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH":${lib-path}"
