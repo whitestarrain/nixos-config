@@ -53,6 +53,7 @@
       # nodePackages.npm
 
       # python
+      uv
       python313
 
       # java
