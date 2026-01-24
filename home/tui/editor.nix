@@ -3,7 +3,7 @@
 {
   home.packages = ([
     pkgs.neovim
-    pkgs.emacs
+    (pkgs.emacs.override { withImageMagick = true; })
   ]);
 
   programs.bash = {
