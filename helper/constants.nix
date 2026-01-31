@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   email = "kaneki.lusou@gmail.com";
@@ -12,4 +12,13 @@
     ipv4 = "8.8.8.8";
     ipv6 = "2001:4860:4860::8888";
   };
+
+  cuda-lib-path = pkgs.lib.makeLibraryPath [
+    pkgs.stdenv.cc.cc
+    # pkgs.linuxKernel.packages.linux_6_12.nvidia_x11
+    pkgs.linuxPackages.nvidia_x11
+    pkgs.libxcb
+    pkgs.libGL
+    pkgs.glib
+  ];
 }

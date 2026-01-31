@@ -4,11 +4,10 @@
   },
 }:
 let
-  lib-path = pkgs.lib.makeLibraryPath [
-    pkgs.stdenv.cc.cc
-    # pkgs.linuxKernel.packages.linux_6_12.nvidia_x11
-    pkgs.linuxPackages.nvidia_x11
-  ];
+  constants = import ../helper/constants.nix {
+    inherit pkgs;
+  };
+  lib-path = constants.cuda-lib-path;
 in
 pkgs.mkShell {
   buildInputs = with pkgs; [

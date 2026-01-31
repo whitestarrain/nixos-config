@@ -43,22 +43,37 @@
       ...
     }@flake-inputs:
     let
+      pkg-options = {
+        config.allowUnfree = true;
+        # cudaSupport enable globally may cause some questions (https://github.com/NixOS/nixpkgs/issues/338315)
+        # config.cudaSupport = true;
+        # config.cudnnSupport = true;
+      };
       genSpeicalArgs = system: {
         inherit flake-inputs;
         helper = import ./helper {
           inherit (nixpkgs) lib;
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs (
+            {
+              inherit system;
+            }
+            // pkg-options
+          );
         };
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-        pkgs-nur =
-          (import nixpkgs {
+        pkgs-unstable = import nixpkgs-unstable (
+          {
             inherit system;
-            config.allowUnfree = true;
-            overlays = [ nur.overlays.default ];
-          }).nur.repos;
+          }
+          // pkg-options
+        );
+        pkgs-nur =
+          (import nixpkgs (
+            {
+              inherit system;
+              overlays = [ nur.overlays.default ];
+            }
+            // pkg-options
+          )).nur.repos;
       };
     in
     {
