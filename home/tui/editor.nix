@@ -4,6 +4,7 @@
   home.packages = ([
     pkgs.neovim
     (pkgs.emacs.override { withImageMagick = true; })
+    pkgs.librime # for emacs-rime
     pkgs.tesseract # ocr engine to get pdf toc
     # enable cuda will build cuda and magma
     # (pkgs.easyocr.override {
