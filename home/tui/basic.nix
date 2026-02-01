@@ -55,6 +55,9 @@
   programs.git = {
     enable = true;
     settings = {
+      core = {
+        quotepath = "false";
+      };
       alias = {
         A = "add -A";
         st = "status";
