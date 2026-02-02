@@ -20,6 +20,7 @@
     which
     tree
     ripgrep
+    silver-searcher # ag
     gzip
     bzip2
     rar

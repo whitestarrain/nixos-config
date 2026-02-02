@@ -11,6 +11,7 @@
     [
       megatools
       baidupcs-go
+      yt-dlp
     ]
   );
 
