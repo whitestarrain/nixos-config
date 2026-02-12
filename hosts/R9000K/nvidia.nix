@@ -86,6 +86,8 @@ in
     fi
   '';
 
+  # `xdpyinfo | grep dimensions` to get the pixels(2560, 1600) and monitor size(378mm, 236mm),
+  # calculate the DPI by: `sqrt(2560^2 + 1600^2)/ (sqrt(37.8^2 + 23.6^2) / 2.54)`
   services.xserver.dpi = lib.mkForce 172;
 
   # boot.kernelParams = [
