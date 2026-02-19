@@ -115,9 +115,9 @@
     };
   };
 
-  # extra jdk version
-  home.file = (
-    builtins.listToAttrs (
+  home.file =
+    # extra jdk version
+    (builtins.listToAttrs (
       builtins.map
         (jdk: {
           name = ".dev/jdks/${jdk.pname}_${jdk.version}";
@@ -135,6 +135,14 @@
           pkgs.zulu17
           pkgs.zulu25
         ]
-    )
-  );
+    ))
+    # other config
+    // {
+      ".npmrc" = {
+        text = ''
+          prefix=~/.npm-packages
+        '';
+        force = true;
+      };
+    };
 }
