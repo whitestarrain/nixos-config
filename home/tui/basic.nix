@@ -49,6 +49,8 @@
       icdiff # better diff
       delta # better git diff
       figlet # ascii art
+      croc # transform file
+      syncthing # sync data
     ]
   );
 
