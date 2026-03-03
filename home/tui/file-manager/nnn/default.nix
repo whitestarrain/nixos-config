@@ -20,7 +20,7 @@
         p = "preview-tui";
         s = "preview-tabbed";
         z = "autojump";
-        b = "cdpath"; # cd bookmark
+        b = "fzcd"; # fzf search
         f = "finder"; # find
         n = "fixname"; # fix name
         o = "nuke";
@@ -51,6 +51,8 @@
 
   # add -c option to swallow window
   programs.bash = {
-    initExtra = (builtins.readFile ./quitcd.sh);
+    initExtra = (builtins.readFile ./quitcd.sh) + ''
+      export FZF_DEFAULT_COMMAND='fd -H --type f --strip-cwd-prefix'
+    '';
   };
 }
