@@ -7,6 +7,7 @@ let
     thunarPlugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-volman
+      thunar-media-tags-plugin
     ];
   }).overrideAttrs (old: {
     # Derivation of thunar with plugins is defined by pkgs.symlinkJoin,
