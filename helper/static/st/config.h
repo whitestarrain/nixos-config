@@ -200,6 +200,7 @@ static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
+	{ ControlMask,          XK_Return,      ttysend,        {.s = "\033[27;5;13~"} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
 	{ TERMMOD,              XK_plus,        zoom,           {.f = +1} },
