@@ -82,6 +82,9 @@
       nixpkgs-fmt
       nil # nix language server
 
+      # reverse engineering
+      radare2
+
       # misc
       protobuf
       subversion # version control
