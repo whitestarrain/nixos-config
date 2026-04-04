@@ -20,8 +20,8 @@
         p = "preview-tui";
         s = "preview-tabbed";
         z = "autojump";
-        b = "fzcd"; # fzf search
-        f = "finder"; # find
+        f = "fzcd"; # fzf search
+        F = "finder"; # find
         n = "fixname"; # fix name
         o = "nuke";
         c = "-!_nnn_copypath*"; # copy current file path
