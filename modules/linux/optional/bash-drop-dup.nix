@@ -63,6 +63,7 @@ let
     "st "
     "tldr "
     "cp "
+    "sdcv"
     "-"
     "?"
   ];

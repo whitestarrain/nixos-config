@@ -36,6 +36,11 @@
       # file parse
       jq
       yq-go
+
+      # translator
+      # download dict: http://download.huzheng.org/zh_CN/
+      sdcv # StarDict
+
       # others
       git
       starship
