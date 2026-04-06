@@ -121,6 +121,8 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = {
     "st",   "-t",          scratchpadname, "-g", "120x35",      "-e",
     "tmux", "new-session", "-A",           "-s", "scraptchpad", NULL};
+static const char *sdcvwordcmd[] = {"st-float", "sdcv_clipboard_word",
+                                        NULL};
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -180,6 +182,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,							XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; kill -47 $(pidof dwmblocks)") },
 	{ MODKEY,												XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ ; kill -47 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,							XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -47 $(pidof dwmblocks)") },
+	{ MODKEY,                       XK_s,      spawn,          {.v = sdcvwordcmd } },
 };
 
 /* button definitions */

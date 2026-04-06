@@ -4,7 +4,6 @@
   flake-inputs,
   user,
   config,
-  sysConfig,
   ...
 }:
 
@@ -104,13 +103,5 @@
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
-  };
-
-  programs.translate-shell = {
-    enable = true;
-    settings = {
-      tl = [ "zh" ];
-      proxy = "127.0.0.1:${sysConfig.wsainHostOption.proxy-port}";
-    };
   };
 }

@@ -64,6 +64,10 @@ let
     "tldr "
     "cp "
     "sdcv"
+    "sdcv_clipboard_word"
+    "crow"
+    "ctrans"
+    "ctrans-shell"
     "-"
     "?"
   ];
