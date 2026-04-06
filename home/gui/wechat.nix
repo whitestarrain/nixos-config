@@ -1,5 +1,5 @@
-{ pkgs, lib, ... }:
+{ pkgs-unstable, lib, ... }:
 
 {
-  # home.packages = [ pkgs.wechat-uos ];
+  home.packages = [ pkgs-unstable.wechat ];
 }
