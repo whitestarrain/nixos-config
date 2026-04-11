@@ -12,5 +12,7 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+  i18n.extraLocales = [
+    "zh_CN.UTF-8/UTF-8"
+  ];
 }
-
