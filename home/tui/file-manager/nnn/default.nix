@@ -52,7 +52,7 @@
   # add -c option to swallow window
   programs.bash = {
     initExtra = (builtins.readFile ./quitcd.sh) + ''
-      export FZF_DEFAULT_COMMAND='fd -H --type f --strip-cwd-prefix'
+      export FZF_DEFAULT_COMMAND='fd -H --type f --exclude .git --strip-cwd-prefix'
     '';
   };
 }
