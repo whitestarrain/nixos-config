@@ -11,6 +11,7 @@
     #   torch = pkgs.python313Packages.torch.override { cudaSupport = true; };
     # })
     pkgs.easyocr
+    pkgs.tree-sitter # treesitter parser generator tool
   ]);
 
   programs.bash = {
