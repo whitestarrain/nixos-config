@@ -92,9 +92,9 @@ in
   # please download realse from github, and run with steam-run
   # init steamVR: sudo setcap CAP_SYS_NICE=eip /path/to/SteamVR/bin/linux64/vrcompositor-launcher
   # streamVR execute args: /path/to/SteamVR/bin/vrmonitor.sh %command%
-  programs.alvr = {
-    enable = true;
-    package = pkgs-unstable.alvr;
-    openFirewall = true;
-  };
+  # programs.alvr = {
+  #   enable = true;
+  #   package = pkgs-unstable.alvr;
+  #   openFirewall = true;
+  # };
 }

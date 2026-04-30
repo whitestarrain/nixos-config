@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   sysConfig,
@@ -10,7 +11,7 @@
     with pkgs;
     [
       megatools
-      baidupcs-go
+      pkgs-unstable.baidupcs-go
       yt-dlp
     ]
   );
