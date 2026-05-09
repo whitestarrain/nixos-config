@@ -55,7 +55,7 @@ in
     package = nvidia_x11;
   };
 
-  # Optimus://wiki.archlinux.org/title/NVIDIA_Optimus
+  # Optimus: https://wiki.archlinux.org/title/NVIDIA_Optimus
   # prime: https://wiki.archlinux.org/title/PRIME
   hardware.nvidia.prime = {
     sync.enable = true;
