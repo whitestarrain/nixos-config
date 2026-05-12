@@ -65,10 +65,10 @@
         quotepath = "false";
       };
       alias = {
-        A = "add -A";
         st = "status";
         tree = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
         caa = "commit -a --amend --no-edit";
+        recent = ''!git for-each-ref --sort=-committerdate --format="%(refname:short) %(committerdate:relative)" refs/heads/ | head -20 | while read branch date; do commit=$(git log "$branch" --no-merges -1 --format="%s" 2>/dev/null); printf "%-35s %-18s %s\n" "$branch" "$date" "$commit"; done;'';
       };
       user = {
         name = user;
