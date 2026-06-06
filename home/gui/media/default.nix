@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, helper, ... }:
 
 let
   show_clip_image = pkgs.writeShellScriptBin "show_clip_image" ''
@@ -6,6 +6,8 @@ let
   '';
 in
 {
+  imports = (helper.lib.scanNixPaths ./.);
+
   home.packages = with pkgs; [
     # audio control
     pavucontrol
@@ -47,35 +49,11 @@ in
       source = ./feh_buttons;
       force = true;
     };
-    "mpv/mpv.conf" = {
-      source = ./mpv.conf;
-      force = true;
-    };
   };
 
   home.file.".w3m/keymap" = {
     source = ./keymap.w3m;
     force = true;
-  };
-
-  programs = {
-    mpv = {
-      enable = true;
-      defaultProfiles = [ "gpu-hq" ];
-      bindings = {
-        n = "playlist-next";
-        p = "playlist-prev";
-        k = "script-message playlistmanager show playlist toggle";
-        j = "seek -5";
-        l = "seek 5";
-      };
-      scripts = [
-        pkgs.mpvScripts.mpris
-        pkgs.mpvScripts.uosc
-        pkgs.mpvScripts.thumbfast
-        pkgs.mpvScripts.mpv-playlistmanager
-      ];
-    };
   };
 
   # services = {
