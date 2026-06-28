@@ -1,19 +1,26 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  helper,
+  ...
+}:
 
 let
   clashtui_config_dir = "/etc/clashtui";
   mihomo_config_path = "${clashtui_config_dir}/mihomo_config";
+  singbox_config_path = "${clashtui_config_dir}/singbox_config";
   clashtui = pkgs.writeShellApplication {
     name = "clashtui";
     text = ''
-      ${pkgs.clashtui}/bin/clashtui -c ${clashtui_config_dir} "$@"
+      ${helper.derivations.clashtui}/bin/clashtui --config-dir=${clashtui_config_dir} "$@"
     '';
   };
   clashtui_mihomo_update_command = lib.getExe (
     pkgs.writeShellApplication {
       name = "clashtui_mihomo_update_command";
       text = ''
-        ${clashtui}/bin/clashtui -u
+        ${clashtui}/bin/clashtui profile update --all
       '';
     }
   );
@@ -22,20 +29,30 @@ in
   environment.systemPackages = [
     clashtui
     pkgs.mihomo
+    pkgs.sing-box
   ];
+  security.wrappers = {
+    clashtui = {
+      setuid = true;
+      owner = "mihomo";
+      group = "mihomo";
+      permissions = "u=rx+s,go=rx"; # Read, execute, and setuid bit
+      source = lib.getExe clashtui;
+    };
+  };
   system.activationScripts.makeVaultWardenDir = ''
     dirs=(
       ${clashtui_config_dir}
-      ${clashtui_config_dir}/profile_cache
-      ${clashtui_config_dir}/profiles
-      ${clashtui_config_dir}/templates
+      ${clashtui_config_dir}/mihomo/profiles
+      ${clashtui_config_dir}/mihomo/templates
       ${mihomo_config_path}
+      ${singbox_config_path}
     )
     for dir in "''${dirs[@]}"
     do
       mkdir -p $dir
-      chown mihomo $dir
-      chgrp mihomo $dir
+      chown -R mihomo $dir
+      chgrp -R mihomo $dir
       chmod 2775 $dir
     done
 
@@ -54,67 +71,32 @@ in
     "clashtui/config.yaml" = {
       user = "mihomo";
       group = "mihomo";
-      text = ''
-        basic:
-          clash_config_dir: '${mihomo_config_path}'
-          clash_bin_path: ${lib.getExe pkgs.mihomo}
-          clash_config_path: '${mihomo_config_path}/config.yaml'
-          timeout: null
-        service:
-          clash_srv_name: 'clashtui_mihomo'
-          is_user: false
-        extra:
-          edit_cmd: 'st -e nvim "%s"'
-          open_dir_cmd: 'st -e nvim "%s"'
-      '';
+      source = pkgs.replaceVarsWith {
+        src = ./clashtui/config.yaml;
+        replacements = {
+          mihomo_core_config_dir = mihomo_config_path;
+          mihomo_core_bin_path = lib.getExe pkgs.mihomo;
+          mihomo_core_config_path = "${mihomo_config_path}/config.yaml";
+          singbox_core_config_dir = singbox_config_path;
+          singbox_core_bin_path = lib.getExe pkgs.sing-box;
+          singbox_core_config_path = "${singbox_config_path}/config.json";
+        };
+      };
     };
-    "clashtui/basic_clash_config.yaml" = {
+    "clashtui/default_theme.yaml" = {
       user = "mihomo";
       group = "mihomo";
-      text = ''
-        mixed-port: ${config.wsainHostOption.proxy-port}
-        allow-lan: true
-        external-controller: 127.0.0.1:9090
-        external-ui: ${mihomo_config_path}/metacubexd
-        ipv6: true
-        unified-delay: true
-        global-client-fingerprint: chrome
-        geodata-mode: true
-        mode: global
-        profile:
-          store-selected: true
-          store-fake-ip: true
-        dns:
-          enable: true
-          prefer-h3: true
-          #listen: :1053       # for redirect/tproxy
-          ipv6: false
-          respect-rules: true
-          enhanced-mode: fake-ip
-          fake-ip-filter:
-            - "*"
-            - "+.lan"
-            - "+.local"
-          nameserver:
-            - https://120.53.53.53/dns-query
-            - https://223.5.5.5/dns-query
-          proxy-server-nameserver:
-            - https://120.53.53.53/dns-query
-            - https://223.5.5.5/dns-query
-          nameserver-policy:
-            geosite:cn,private:
-              #- 114.114.114.114
-              #- 223.5.5.5
-              - https://120.53.53.53/dns-query
-              - https://223.5.5.5/dns-query
-            geosite:geolocation-!cn:
-              #- 8.8.8.8
-              - https://dns.cloudflare.com/dns-query
-              - https://dns.google/dns-query
-      '';
+      source = ./clashtui/default_theme.yaml;
     };
-    "clashtui/mihomo_config/metacubexd" = {
-      source = pkgs.metacubexd;
+    "clashtui/default_keymap.yaml" = {
+      user = "mihomo";
+      group = "mihomo";
+      source = ./clashtui/default_keymap.yaml;
+    };
+    "clashtui/mihomo/core_override_config.yaml" = {
+      user = "mihomo";
+      group = "mihomo";
+      source = ./clashtui/mihomo/core_override_config.yaml;
     };
   };
   systemd.services.clashtui_mihomo = {

@@ -1,0 +1,4 @@
+# 定义代理提供者的订阅 URL
+# pvd:
+#   pvd0: "https://example.com/sub.yaml"
+

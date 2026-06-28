@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, pkgs-unstable, lib, ... }:
 let
-  drvList = builtins.map (f: pkgs.callPackage (./. + "/${f}") { }) (
+  drvList = builtins.map (f: pkgs-unstable.callPackage (./. + "/${f}") { }) (
     builtins.attrNames (
       lib.attrsets.filterAttrs (
         path: _type:

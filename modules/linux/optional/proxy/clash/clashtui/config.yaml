@@ -1,0 +1,20 @@
+mihomo:
+  core:
+    config_dir: @mihomo_core_config_dir@
+    bin_path: @mihomo_core_bin_path@
+    config_path: @mihomo_core_config_path@
+  core_service:
+    service_name: clashtui_mihomo
+    is_user: false
+singbox:
+  core:
+    config_dir: @singbox_core_config_dir@
+    bin_path: @singbox_core_bin_path@
+    config_path: @singbox_core_config_path@
+  core_service:
+    service_name: clashtui_singbox
+    is_user: false
+timeout: null
+extra:
+  edit_cmd: xdg-open "%s"
+  open_dir_cmd: xdg-open "%s"

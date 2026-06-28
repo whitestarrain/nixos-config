@@ -49,7 +49,7 @@
         # config.cudaSupport = true;
         # config.cudnnSupport = true;
       };
-      genSpeicalArgs = system: {
+      genSpeicalArgs = system: rec {
         inherit flake-inputs;
         helper = import ./helper {
           inherit (nixpkgs) lib;
@@ -59,6 +59,7 @@
             }
             // pkg-options
           );
+          pkgs-unstable = pkgs-unstable;
         };
         pkgs-unstable = import nixpkgs-unstable (
           {

@@ -1,8 +1,8 @@
-{ pkgs, flake-inputs, ... }:
+{ pkgs, pkgs-unstable, flake-inputs, ... }:
 
 {
   home.packages = (with pkgs;[
-    tmux
+    pkgs-unstable.tmux
   ]);
   # home.file.".tmux.conf".source = "${flake-inputs.dotfiles}/tmux/.tmux.conf";
 }
