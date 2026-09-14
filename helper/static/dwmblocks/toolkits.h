@@ -18,7 +18,7 @@
 void get_cpu_usage(char *buf, int buf_size) {
   // total and idel time
   static unsigned long core_last_sum_idle[MAX_CORE_NUM][2] = {0};
-  unsigned long core_sum_idle[MAX_CORE_NUM][3] = {0};
+  unsigned long core_sum_idle[MAX_CORE_NUM][2] = {0};
   double cpu_usage[MAX_CORE_NUM] = {0};
   double total = 0, max = 0;
   const char token_delim[2] = " ";
