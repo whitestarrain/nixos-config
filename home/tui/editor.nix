@@ -3,6 +3,7 @@
 {
   home.packages = ([
     pkgs.neovim
+    # abduco -A emacs emacs
     (pkgs.emacs.override { withImageMagick = true; })
     pkgs.librime # for emacs-rime
     pkgs.tesseract # ocr engine to get pdf toc
