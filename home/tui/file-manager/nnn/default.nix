@@ -33,7 +33,7 @@
       fzf
       renameutils
       moreutils
-      mpv
+      # mpv # use custom mpv instead
       sxiv
       zathura
       tabbed
