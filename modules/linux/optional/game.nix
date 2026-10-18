@@ -47,6 +47,12 @@ in
     # PINCE have not been packaged
   ];
 
+  environment.sessionVariables = {
+    # shade cache path: ~/.cache/nvidia/
+    __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = 1;
+    __GL_SHADER_DISK_CACHE_SIZE = 32212254720;
+  };
+
   services.pipewire = {
     lowLatency = {
       # enable this module
