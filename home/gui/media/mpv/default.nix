@@ -9,6 +9,11 @@ let
       homepage = "https://github.com/zenyd/mpv-scripts";
     };
   };
+  mpv-backup-file = pkgs.mpvScripts.buildLua {
+    pname = "mpv-backup-file";
+    version = "0.1";
+    src = ./backup-file;
+  };
 in
 {
   xdg.configFile = {
@@ -35,6 +40,7 @@ in
         pkgs.mpvScripts.thumbfast
         pkgs.mpvScripts.mpv-playlistmanager
         mpv-delete-file
+        mpv-backup-file
       ];
     };
   };
